@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ArrowIcon from './ArrowIcon';
 import ProjectImage from './ProjectImage';
 import { getDesignApproachHref } from './designApproaches';
@@ -7,8 +7,21 @@ import projects, { getProjectHref } from './projects';
 
 function ProjectCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const activeProject = projects[activeIndex];
   const activeApproachHref = getDesignApproachHref(activeProject);
+
+  useEffect(() => {
+    if (isPaused || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const timer = window.setInterval(() => {
+      if (document.visibilityState === 'visible') {
+        setActiveIndex((currentIndex) => (currentIndex + 1) % projects.length);
+      }
+    }, 5000);
+
+    return () => window.clearInterval(timer);
+  }, [isPaused]);
 
   function showPrevious() {
     // Wrap around so the carousel remains navigable at either end of the project list.
@@ -20,8 +33,19 @@ function ProjectCarousel() {
   }
 
   return (
-    <div className="project-carousel" role="region" aria-roledescription="carousel" aria-label="Selected projects">
-      <div className="project-carousel-viewport" aria-live="polite">
+    <div
+      className="project-carousel"
+      role="region"
+      aria-roledescription="carousel"
+      aria-label="Selected projects"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onFocusCapture={() => setIsPaused(true)}
+      onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) setIsPaused(false);
+      }}
+    >
+      <div className="project-carousel-viewport" aria-live="off">
         <article
           className={activeApproachHref
             ? 'project-card project-carousel-slide has-secret-approach'

@@ -677,18 +677,30 @@ button:focus-visible, a:focus-visible { outline: 2px solid #77943a; outline-offs
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
 }
 
-[data-text-entrance] {
-  animation: text-appear .6s cubic-bezier(.2, .7, .2, 1) both;
-  animation-delay: var(--text-entrance-delay, 0ms);
+[data-text-scroll] {
+  opacity: 0;
 }
 
-@keyframes text-appear {
-  from { opacity: 0; transform: translateY(14px); }
-  to { opacity: 1; transform: translateY(0); }
+:is(h1, h2, h3, h4, h5, h6, p, a, button, label, li, blockquote, figcaption, legend, summary, dt, dd, th, td, caption, small, strong, em, span)[data-text-scroll='pending'] {
+  translate: 0 12px;
+}
+
+[data-text-scroll='visible'] {
+  opacity: 1;
+  transition: opacity .55s ease, translate .55s cubic-bezier(.2, .7, .2, 1);
+  transition-delay: var(--text-scroll-delay, 0ms);
+}
+
+:is(h1, h2, h3, h4, h5, h6, p, a, button, label, li, blockquote, figcaption, legend, summary, dt, dd, th, td, caption, small, strong, em, span)[data-text-scroll='visible'] {
+  translate: 0 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  [data-text-entrance] { animation: none; }
+  [data-text-scroll] {
+    opacity: 1;
+    translate: none;
+    transition: none;
+  }
 }
 
 .theme-dark .site-header,

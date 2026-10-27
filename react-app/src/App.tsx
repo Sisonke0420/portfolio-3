@@ -71,6 +71,7 @@ function App({ initialPath }: AppProps) {
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!('IntersectionObserver' in window)) return;
 
     const site = document.querySelector<HTMLElement>('.site');
     if (!site) return;
@@ -85,17 +86,27 @@ function App({ initialPath }: AppProps) {
         const hasDirectText = [...target.childNodes].some(
           (node) => node.nodeType === Node.TEXT_NODE && Boolean(node.textContent?.trim()),
         );
-        return hasDirectText && !target.parentElement?.closest(textSelector);
+        return hasDirectText;
       });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.setAttribute('data-text-scroll', 'visible');
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -24px 0px' });
+
     textTargets.forEach((target, index) => {
-      target.setAttribute('data-text-entrance', '');
-      target.style.setProperty('--text-entrance-delay', `${(index % 8) * 45}ms`);
+      target.setAttribute('data-text-scroll', 'pending');
+      target.style.setProperty('--text-scroll-delay', `${(index % 5) * 35}ms`);
+      observer.observe(target);
     });
 
     return () => {
+      observer.disconnect();
       textTargets.forEach((target) => {
-        target.removeAttribute('data-text-entrance');
-        target.style.removeProperty('--text-entrance-delay');
+        target.removeAttribute('data-text-scroll');
+        target.style.removeProperty('--text-scroll-delay');
       });
     };
   }, [currentPage, projectSlug]);
