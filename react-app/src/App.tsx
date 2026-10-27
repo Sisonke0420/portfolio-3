@@ -104,6 +104,7 @@ function App({ initialPath }: AppProps) {
           darkMode={darkMode}
           onToggleTheme={() => setDarkMode((isDarkMode) => !isDarkMode)}
         />
+        <div className="header-spacer" aria-hidden="true" />
         <main id="main-content" key={currentPage} tabIndex={-1}>
           {currentPage === 'approach' && selectedApproach ? (
             <DesignApproachPage approach={selectedApproach} />

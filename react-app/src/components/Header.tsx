@@ -23,7 +23,7 @@ function Header({ currentPage, pages, darkMode, onToggleTheme }: HeaderProps) {
   }, [menuOpen]);
 
   return (
-    <header className="site-header">
+    <header className={menuOpen ? 'site-header menu-open' : 'site-header'}>
       <a className="wordmark" href={getRouteHref('/')} aria-label="Sisonke Miya home">
         sm<span className="wordmark-dot">.</span>
       </a>

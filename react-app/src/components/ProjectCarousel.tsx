@@ -20,7 +20,7 @@ function ProjectCarousel() {
   }
 
   return (
-    <div className="project-carousel" role="region" aria-roledescription="carousel" aria-label="Selected projects">
+    <div className="project-carousel" role="region" aria-roledescription="carousel" aria-label="Selected projects" data-scroll-reveal>
       <div className="project-carousel-viewport" aria-live="polite">
         <article
           className={activeApproachHref
