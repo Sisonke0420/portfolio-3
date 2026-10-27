@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react';
 import ArrowIcon from '../ArrowIcon';
 import ProjectCarousel from '../ProjectCarousel';
 import { getRouteHref } from '../pageConfig';
@@ -8,11 +7,11 @@ function FeaturedWork() {
   return (
     <section className="featured-section page-shell">
       <div className="section-heading">
-        <div data-scroll-reveal>
+        <div>
           <p className="eyebrow"><span className="eyebrow-line" /> Selected projects</p>
           <h2>A few things<br />I’ve put into <span className="serif-word">the world.</span></h2>
         </div>
-        <a className="text-link" href={getRouteHref('/work/')} data-scroll-reveal>See all projects <ArrowIcon /></a>
+        <a className="text-link" href={getRouteHref('/work/')}>See all projects <ArrowIcon /></a>
       </div>
       <ProjectCarousel />
     </section>
@@ -20,33 +19,10 @@ function FeaturedWork() {
 }
 
 function HomePage() {
-  const homePageRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const homePage = homePageRef.current;
-    if (!homePage || !('IntersectionObserver' in window)) return;
-
-    const targets = homePage.querySelectorAll<HTMLElement>('[data-scroll-reveal]');
-    if (targets.length === 0) return;
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -36px 0px' });
-
-    homePage.classList.add('has-scroll-reveal');
-    targets.forEach((target) => observer.observe(target));
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <div className="home-page" ref={homePageRef}>
+    <div className="home-page">
       <section className="hero page-shell">
-        <div className="hero-copy" data-scroll-reveal>
+        <div className="hero-copy">
           <p className="eyebrow"><span className="eyebrow-line" /> Graphic designer &amp; developer</p>
           <h1>
             Thoughtful<br />
@@ -69,7 +45,7 @@ function HomePage() {
             <span>Based in Johannesburg, GP<br />Working everywhere</span>
           </div>
         </div>
-        <div className="hero-video" data-scroll-reveal>
+        <div className="hero-video">
           <video
             className="hero-video-player"
             poster={heroProjectImage}
@@ -84,13 +60,13 @@ function HomePage() {
             <span className="hero-video-message">Video coming soon</span>
           </div>
         </div>
-        <div className="hero-index" data-scroll-reveal><span>01</span><span className="index-rule" /><span>04</span></div>
+        <div className="hero-index"><span>01</span><span className="index-rule" /><span>04</span></div>
       </section>
 
       <section className="intro-strip">
         <div className="page-shell intro-inner">
-          <p data-scroll-reveal>Good work starts with <em>good questions.</em></p>
-          <a href={getRouteHref('/about/')} className="round-link" aria-label="Learn about Sisonke Miya" data-scroll-reveal>
+          <p>Good work starts with <em>good questions.</em></p>
+          <a href={getRouteHref('/about/')} className="round-link" aria-label="Learn about Sisonke Miya">
             <ArrowIcon diagonal />
           </a>
         </div>

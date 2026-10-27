@@ -4,10 +4,23 @@ type ProjectImageProps = {
   src: string;
   alt: string;
   contained?: boolean;
+  href?: string;
 };
 
-function ProjectImage({ src, alt, contained = false }: ProjectImageProps) {
+function ProjectImage({ src, alt, contained = false, href }: ProjectImageProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
+
+  if (href) {
+    return (
+      <a className="project-image-link" href={href} aria-label={`View project: ${alt}`}>
+        <img
+          className={`project-art-image${contained ? ' project-art-image-contained' : ''}`}
+          src={src}
+          alt={alt}
+        />
+      </a>
+    );
+  }
 
   return (
     <>

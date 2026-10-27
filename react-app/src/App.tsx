@@ -70,6 +70,63 @@ function App({ initialPath }: AppProps) {
   }, []);
 
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!('IntersectionObserver' in window)) return;
+
+    const site = document.querySelector<HTMLElement>('.site');
+    const main = document.getElementById('main-content');
+    if (!site || !main) return;
+
+    const textSelector = [
+      'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'a', 'button', 'label',
+      'li', 'blockquote', 'figcaption', 'legend', 'summary', 'dt', 'dd',
+      'th', 'td', 'caption', 'small', 'strong', 'em', 'span',
+    ].join(', ');
+    const textTargets = [...site.querySelectorAll<HTMLElement>(textSelector)]
+      .filter((target) => {
+        const hasDirectText = [...target.childNodes].some(
+          (node) => node.nodeType === Node.TEXT_NODE && Boolean(node.textContent?.trim()),
+        );
+        return hasDirectText && !target.parentElement?.closest(textSelector);
+      });
+    const animationTargets = [
+      ...textTargets,
+      ...main.querySelectorAll<HTMLElement>([
+        'img', 'video',
+      ].join(', ')),
+    ];
+
+    if (animationTargets.length === 0) return;
+
+    const effects = ['rise', 'left', 'right', 'scale', 'tilt', 'blur', 'wipe'];
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.setAttribute('data-scroll-state', 'visible');
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -32px 0px' });
+
+    animationTargets.forEach((target, index) => {
+      target.setAttribute('data-scroll-effect', effects[index % effects.length]);
+      target.style.setProperty('--scroll-delay', `${(index % 4) * 55}ms`);
+      target.setAttribute('data-scroll-state', 'pending');
+      observer.observe(target);
+    });
+    site.classList.add('has-scroll-animations');
+
+    return () => {
+      observer.disconnect();
+      site.classList.remove('has-scroll-animations');
+      animationTargets.forEach((target) => {
+        target.removeAttribute('data-scroll-effect');
+        target.removeAttribute('data-scroll-state');
+        target.style.removeProperty('--scroll-delay');
+      });
+    };
+  }, [currentPage, projectSlug]);
+
+  useEffect(() => {
     // Read the saved preference after hydration before persisting state, avoiding an initial overwrite.
     setDarkMode(window.localStorage.getItem('portfolio-theme') === 'dark');
     setThemeReady(true);

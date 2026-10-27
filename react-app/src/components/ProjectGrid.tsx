@@ -19,22 +19,24 @@ function ProjectGrid({ limit }: ProjectGridProps) {
           <article className={approachHref ? 'project-card has-secret-approach' : 'project-card'} key={project.number}>
             <div className={`project-art ${project.image || project.video ? 'project-art-image-slide' : project.className}`}>
               {project.video ? (
-                <video
-                  className="project-art-video"
-                  src={project.video}
-                  aria-label={`${project.title} video`}
-                  autoPlay
-                  controls
-                  loop
-                  muted
-                  playsInline
-                  preload="auto"
-                />
+                <a className="project-art-video-link" href={getProjectHref(project)} aria-label={`View project: ${project.title}`}>
+                  <video
+                    className="project-art-video"
+                    src={project.video}
+                    aria-hidden="true"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="auto"
+                  />
+                </a>
               ) : project.image ? (
                 <ProjectImage
                   src={project.image}
                   alt={project.imageAlt ?? `${project.title} project artwork`}
                   contained={project.containImage}
+                  href={getProjectHref(project)}
                 />
               ) : (
                 <>

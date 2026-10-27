@@ -20,7 +20,7 @@ function ProjectCarousel() {
   }
 
   return (
-    <div className="project-carousel" role="region" aria-roledescription="carousel" aria-label="Selected projects" data-scroll-reveal>
+    <div className="project-carousel" role="region" aria-roledescription="carousel" aria-label="Selected projects">
       <div className="project-carousel-viewport" aria-live="polite">
         <article
           className={activeApproachHref
@@ -33,22 +33,24 @@ function ProjectCarousel() {
         >
           <div className={`project-art ${activeProject.image || activeProject.video ? 'project-art-image-slide' : activeProject.className}`}>
             {activeProject.video ? (
-              <video
-                className="project-art-video"
-                src={activeProject.video}
-                aria-label={`${activeProject.title} video`}
-                autoPlay
-                controls
-                loop
-                muted
-                playsInline
-                preload="auto"
-              />
+              <a className="project-art-video-link" href={getProjectHref(activeProject)} aria-label={`View project: ${activeProject.title}`}>
+                <video
+                  className="project-art-video"
+                  src={activeProject.video}
+                  aria-hidden="true"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="auto"
+                />
+              </a>
             ) : activeProject.image ? (
               <ProjectImage
                 src={activeProject.image}
                 alt={activeProject.imageAlt ?? `${activeProject.title} project artwork`}
                 contained={activeProject.containImage}
+                href={getProjectHref(activeProject)}
               />
             ) : (
               <>
