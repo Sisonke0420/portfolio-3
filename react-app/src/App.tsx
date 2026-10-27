@@ -71,11 +71,9 @@ function App({ initialPath }: AppProps) {
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    if (!('IntersectionObserver' in window)) return;
 
     const site = document.querySelector<HTMLElement>('.site');
-    const main = document.getElementById('main-content');
-    if (!site || !main) return;
+    if (!site) return;
 
     const textSelector = [
       'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'a', 'button', 'label',
@@ -89,39 +87,15 @@ function App({ initialPath }: AppProps) {
         );
         return hasDirectText && !target.parentElement?.closest(textSelector);
       });
-    const animationTargets = [
-      ...textTargets,
-      ...main.querySelectorAll<HTMLElement>([
-        'img', 'video',
-      ].join(', ')),
-    ];
-
-    if (animationTargets.length === 0) return;
-
-    const effects = ['rise', 'left', 'right', 'scale', 'tilt', 'blur', 'wipe'];
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.setAttribute('data-scroll-state', 'visible');
-        observer.unobserve(entry.target);
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -32px 0px' });
-
-    animationTargets.forEach((target, index) => {
-      target.setAttribute('data-scroll-effect', effects[index % effects.length]);
-      target.style.setProperty('--scroll-delay', `${(index % 4) * 55}ms`);
-      target.setAttribute('data-scroll-state', 'pending');
-      observer.observe(target);
+    textTargets.forEach((target, index) => {
+      target.setAttribute('data-text-entrance', '');
+      target.style.setProperty('--text-entrance-delay', `${(index % 8) * 45}ms`);
     });
-    site.classList.add('has-scroll-animations');
 
     return () => {
-      observer.disconnect();
-      site.classList.remove('has-scroll-animations');
-      animationTargets.forEach((target) => {
-        target.removeAttribute('data-scroll-effect');
-        target.removeAttribute('data-scroll-state');
-        target.style.removeProperty('--scroll-delay');
+      textTargets.forEach((target) => {
+        target.removeAttribute('data-text-entrance');
+        target.style.removeProperty('--text-entrance-delay');
       });
     };
   }, [currentPage, projectSlug]);
@@ -154,7 +128,6 @@ function App({ initialPath }: AppProps) {
         </div>
       )}
       <div className={darkMode ? 'site theme-dark' : 'site'}>
-        <a className="skip-link" href="#main-content">Skip to content</a>
         <Header
           currentPage={currentPage}
           pages={pages}
