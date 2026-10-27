@@ -7,6 +7,7 @@ import DesignApproachPage from './components/pages/DesignApproachPage';
 import HomePage from './components/pages/HomePage';
 import ProjectDetailPage from './components/pages/ProjectDetailPage';
 import WorkPage from './components/pages/WorkPage';
+import CustomCursor from './components/CustomCursor';
 import { pages, type Page } from './components/pageConfig';
 import projects, { getProjectSlug } from './components/projects';
 import { designApproaches } from './components/designApproaches';
@@ -162,6 +163,7 @@ function App({ initialPath }: AppProps) {
         </main>
         <Footer />
       </div>
+      <CustomCursor darkMode={darkMode} />
     </>
   );
 }

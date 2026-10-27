@@ -20,6 +20,7 @@ export type Project = {
   mark: string;
   description: string;
   summary: string;
+  detail: string;
   image?: string;
   imageAlt?: string;
   containImage?: boolean;
@@ -47,6 +48,7 @@ const projects: Project[] = [
     mark: '',
     description: '',
     summary: 'A grid-built letterform study using oversized characters, technical labels, and a deep blue palette.',
+    detail: 'The project brings its construction into view: the grid becomes part of the composition, while scale and careful alignment give the letterforms room to lead.',
     image: modularIdentityImage,
     imageAlt: 'Blue modular letterform identity with a geometric grid',
     containImage: true,
@@ -59,6 +61,7 @@ const projects: Project[] = [
     mark: '',
     description: '',
     summary: 'An editorial typography experiment pairing oversized black forms with fine grid lines and a restrained cream palette.',
+    detail: 'Large forms and fine rules create a deliberate contrast between expressive type and precise structure, giving the layout its own visual rhythm.',
     image: graphicPosterImage,
     imageAlt: 'Black typographic forms arranged in an editorial grid',
     containImage: true,
@@ -71,6 +74,7 @@ const projects: Project[] = [
     mark: '',
     description: '',
     summary: 'A poster concept that puts an oversized orange headline and a simple directional mark at the center of the composition.',
+    detail: 'The headline carries the message, with color and a small directional gesture providing emphasis without competing for attention.',
     image: practicePosterImage,
     imageAlt: 'Orange and cream poster asking, “Want to practice graphic design?”',
     containImage: true,
@@ -83,6 +87,7 @@ const projects: Project[] = [
     mark: '',
     description: '',
     summary: 'A graphic portrait composition pairing monochrome photography with a vivid blue field and geometric overlays.',
+    detail: 'The image balances portraiture with graphic intervention: a limited palette and geometric forms frame the subject and shape the overall mood.',
     image: portraitArtDirectionImage,
     imageAlt: 'Portrait overlaid with white geometric shapes on a blue background',
     containImage: true,
@@ -95,6 +100,7 @@ const projects: Project[] = [
     mark: '',
     description: '',
     summary: 'An abstract poster study built from layered shapes, bold type, and a limited black, grey, and peach palette.',
+    detail: 'Layered forms and a restrained palette give the composition depth, while bold type keeps the eye anchored within the abstract arrangement.',
     image: takadanobabaPosterImage,
     imageAlt: 'Abstract Takadanobaba poster in black, grey, and peach',
     containImage: true,
@@ -107,6 +113,7 @@ const projects: Project[] = [
     mark: '',
     description: '',
     summary: 'A theatre poster series with modular layouts, restrained typography, and a consistent editorial rhythm.',
+    detail: 'Across the series, a shared layout language connects each poster. Variation in composition keeps the set cohesive without making every piece feel identical.',
     image: theatrePosterImage,
     imageAlt: 'A series of minimalist theatre posters in black and cream',
     containImage: true,
@@ -119,6 +126,7 @@ const projects: Project[] = [
     mark: '',
     description: '',
     summary: 'A vivid green art-book cover presented as a stacked mockup, emphasizing its bold type and sculptural form.',
+    detail: 'The stacked presentation makes the cover feel tactile. Saturated green and strong lettering keep the design legible while giving it a distinct presence.',
     image: artBookStackImage,
     imageAlt: 'Stack of vivid green art books with bold black typography',
     containImage: true,
@@ -131,6 +139,7 @@ const projects: Project[] = [
     mark: '',
     description: '',
     summary: 'A close-up editorial composition exploring large-scale letterforms, page turns, and bright green color.',
+    detail: 'The close crop draws attention to how type moves across a spread, using color and scale to connect the details of the page with its larger composition.',
     image: editorialSpreadImage,
     imageAlt: 'Close-up of an open green editorial spread with large black lettering',
     containImage: true,
@@ -143,6 +152,7 @@ const projects: Project[] = [
     mark: '',
     description: '',
     summary: 'A geometric awards poster shown in its architectural setting, where the installation echoes the design’s bold shapes.',
+    detail: 'Seen in its setting, the poster’s geometry relates to the surrounding architecture. The presentation highlights the connection between graphic form and physical space.',
     image: awardsPosterImage,
     imageAlt: 'Geometric Dutch Design Awards poster displayed on a building',
     containImage: true,
@@ -155,6 +165,7 @@ const projects: Project[] = [
     mark: '',
     description: '',
     summary: 'A typography specimen presenting a custom-looking wordmark alongside the grid and spacing behind its construction.',
+    detail: 'The specimen pairs the finished wordmark with its underlying construction, making spacing and alignment part of the visual story rather than hiding them.',
     image: textureTypographyImage,
     imageAlt: 'Black “texture” wordmark above a typographic construction grid',
     containImage: true,
@@ -167,6 +178,7 @@ const projects: Project[] = [
     mark: '',
     description: '',
     summary: 'A two-page editorial spread using a saturated yellow ground, dense text, and a strong typographic hierarchy.',
+    detail: 'The bright ground and dense copy create an immediate field of color, while clear typographic levels help organize the information across both pages.',
     image: yellowEditorialImage,
     imageAlt: 'Open editorial spread with yellow pages and bold black typography',
     containImage: true,
@@ -179,6 +191,7 @@ const projects: Project[] = [
     mark: '',
     description: '',
     summary: 'A short street-scene video edit shaped by layered reflections and a muted, cinematic palette.',
+    detail: 'The edit uses reflections and a quieter palette to shape how the street scene unfolds, emphasizing atmosphere and movement over visual noise.',
     video: streetSceneVideo,
   },
 ];

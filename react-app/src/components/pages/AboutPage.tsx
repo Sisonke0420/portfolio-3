@@ -12,7 +12,15 @@ function AboutPage() {
             I’m Sisonke Miya, a graphic designer and developer who connects
             visual storytelling with thoughtful technology. I shape ideas into
             distinctive identities and bring them to life as polished,
-            accessible digital experiences.
+            accessible digital experiences. I care about the whole experience:
+            the story a brand tells, the way an interface feels, and the
+            technology that makes it work.
+          </p>
+          <p className="about-ai-copy">
+            I’m also curious about how AI and emerging technologies can support
+            creative work. I explore them as tools for research, experimentation,
+            and new ways to interact—while keeping human judgment, clear
+            purpose, and responsible use at the center.
           </p>
         </div>
         <div className="about-card">
@@ -24,6 +32,7 @@ function AboutPage() {
         <div>
           <h2>My approach</h2>
           <p>I partner with people and teams to understand what they need to say, who they need to reach, and what success looks like. Then I move from research and early concepts to considered visuals and carefully built experiences—keeping clarity, accessibility, and craft in focus at every step.</p>
+          <p>Every choice has a purpose, from the first typeface study to the structure behind a page. I aim to make work that feels distinctive without getting in the way of the message or the people it is for.</p>
         </div>
         <div>
           <h2>Core capabilities</h2>
@@ -35,6 +44,21 @@ function AboutPage() {
           </ul>
         </div>
       </div>
+      <section className="about-collaboration">
+        <p className="eyebrow"><span className="eyebrow-line" /> A good way to work together</p>
+        <h2>Listen closely.<br /><span className="serif-word">Make with intention.</span></h2>
+        <p>
+          I value a thoughtful, open process: make space for the right
+          questions, share work early enough to learn from it, and keep the
+          reason behind each decision in view. That makes room for ideas to
+          develop without losing sight of what the work needs to do.
+        </p>
+        <p>
+          I believe the best outcomes come from curiosity and care: being willing
+          to test an idea, notice what is not working, and keep refining until
+          the design feels both considered and clear.
+        </p>
+      </section>
       <section className="about-disciplines" aria-labelledby="disciplines-heading">
         <p className="eyebrow"><span className="eyebrow-line" /> How I bring ideas to life</p>
         <h2 id="disciplines-heading">Design with intention.<br /><span className="serif-word">Build with care.</span></h2>
@@ -88,6 +112,16 @@ function AboutPage() {
             <h3>Test the details in real browsers.</h3>
             <p>I check layouts across screen sizes, exercise interactions, and use browser developer tools to find and fix issues. Iteration helps improve usability, accessibility, and performance before launch.</p>
           </article>
+          <article>
+            <p className="discipline-number">04 / BACKEND</p>
+            <h3>Connect the interface to useful services.</h3>
+            <p>I’m growing my backend development practice with Node.js and Express, building REST APIs, and learning how to model and query application data with MongoDB. Understanding these pieces helps me think beyond the screen and consider how a complete product works.</p>
+          </article>
+          <article>
+            <p className="discipline-number">05 / AI + EMERGING TECH</p>
+            <h3>Explore new tools with intention.</h3>
+            <p>I’m interested in how AI can help expand early exploration, speed up repetitive tasks, and inspire new creative directions. I treat its output as a starting point to question and refine, not a substitute for original thinking, careful review, or the needs of the people using the work.</p>
+          </article>
         </div>
       </section>
       <section className="about-tools" aria-labelledby="tools-heading">
@@ -100,6 +134,10 @@ function AboutPage() {
           <li><span>Figma</span><span>Interface design</span></li>
           <li><span>React + TypeScript</span><span>Interactive interfaces</span></li>
           <li><span>HTML + CSS + JavaScript</span><span>Front-end foundations</span></li>
+          <li><span>Node.js + Express</span><span>Backend foundations</span></li>
+          <li><span>REST APIs</span><span>Service integration</span></li>
+          <li><span>MongoDB</span><span>Document database</span></li>
+          <li><span>AI + emerging technology</span><span>Exploration and experimentation</span></li>
           <li><span>Git + GitHub</span><span>Version control</span></li>
           <li><span>Browser DevTools</span><span>Debugging and testing</span></li>
         </ul>

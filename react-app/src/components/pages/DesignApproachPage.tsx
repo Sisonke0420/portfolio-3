@@ -65,6 +65,12 @@ function DesignApproachPage({ approach }: DesignApproachPageProps) {
         ))}
       </section>
 
+      <p className="approach-takeaway">
+        These principles are starting points, not fixed rules. Their value is
+        in helping each decision support the message, the medium, and the
+        people the work is for.
+      </p>
+
       <div className="project-detail-next">
         <span>Back to the portfolio</span>
         <a href={getRouteHref('/work/')}>

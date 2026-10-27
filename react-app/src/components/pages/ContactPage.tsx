@@ -45,6 +45,14 @@ function ContactPage() {
             </button>
             <p className="contact-form-note">This opens your email app with your message ready to send.</p>
           </form>
+          <div className="contact-guidance">
+            <p className="eyebrow"><span className="eyebrow-line" /> A useful place to start</p>
+            <p>
+              Tell me what you’re hoping to make, who it’s for, and what you
+              already know about the project. A rough idea is welcome; we can
+              work through the details together.
+            </p>
+          </div>
         </div>
         <div className="contact-card">
           <span className="contact-symbol">✳</span>

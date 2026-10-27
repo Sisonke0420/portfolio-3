@@ -54,6 +54,7 @@ function ProjectDetailPage({ project }: ProjectDetailPageProps) {
         </div>
         <div>
           <p>{project.summary}</p>
+          <p>{project.detail}</p>
           <p className="project-detail-category"><strong>Discipline</strong>{project.category}</p>
         </div>
       </div>
