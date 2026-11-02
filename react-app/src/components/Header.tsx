@@ -4,11 +4,9 @@ import { getRouteHref, type Page } from './pageConfig';
 type HeaderProps = {
   currentPage: Page;
   pages: { id: Page; label: string }[];
-  darkMode: boolean;
-  onToggleTheme: () => void;
 };
 
-function Header({ currentPage, pages, darkMode, onToggleTheme }: HeaderProps) {
+function Header({ currentPage, pages }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -46,18 +44,8 @@ function Header({ currentPage, pages, darkMode, onToggleTheme }: HeaderProps) {
       </nav>
       <a className="header-availability" href={getRouteHref('/contact/')}>
         <span className="availability-dot" />
-        Available for select projects
+        Available for select commissions
       </a>
-      <button
-        className="theme-toggle"
-        type="button"
-        onClick={onToggleTheme}
-        aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
-        title={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
-      >
-        <span aria-hidden="true">{darkMode ? '☀' : '☾'}</span>
-        <span className="theme-toggle-label">{darkMode ? 'Light' : 'Dark'}</span>
-      </button>
       <button
         className="menu-toggle"
         type="button"

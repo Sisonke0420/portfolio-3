@@ -4,24 +4,23 @@ import ProjectGrid from '../ProjectGrid';
 function WorkPage() {
   return (
     <section className="inner-page page-shell work-page">
-      <p className="eyebrow"><span className="eyebrow-line" /> Selected work · 2022—2026</p>
+      <p className="eyebrow"><span className="eyebrow-line" /> Portfolio · 2022—2026</p>
       <div className="work-heading">
-        <h1 className="page-title">Work that makes<br />you <span className="serif-word">look twice.</span></h1>
-        <p>A collection of visual explorations, graphic design, editorial layouts, and moving-image work.</p>
+        <h1 className="page-title">Ideas, shaped<br />with <span className="serif-word">intention.</span></h1>
+        <p>Visual identity, editorial design, typography, and motion—developed with a clear point of view and purpose.</p>
       </div>
       <p className="work-introduction">
-        Each project starts with a different question. Some explore how a
-        letterform can become a system; others use image, color, or sequence to
-        give an idea its voice. Browse the collection to see how those choices
-        take shape across formats.
+        This selection spans visual identity, editorial design, posters, and
+        moving image. Each project begins with a defined idea and is developed
+        to communicate clearly with its intended audience.
       </p>
       <ProjectGrid />
       <div className="work-closing-copy">
-        <p className="eyebrow"><span className="eyebrow-line" /> Looking for a particular direction?</p>
+        <p className="eyebrow"><span className="eyebrow-line" /> Commission enquiries</p>
         <p>
-          The projects here range from a single poster to a broader visual
-          language. If something sparks an idea for your own project, I’d be
-          glad to hear what you’re thinking.
+          The portfolio ranges from individual poster designs to broader visual
+          systems. For commission enquiries and collaboration opportunities,
+          please get in touch.
         </p>
       </div>
       <Callout />

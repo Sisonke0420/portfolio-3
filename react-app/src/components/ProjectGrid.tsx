@@ -53,7 +53,7 @@ function ProjectGrid({ limit }: ProjectGridProps) {
                   href={getRouteHref(approachHref)}
                   aria-label={`Discover the hidden design approach for ${project.title}`}
                 >
-                  <span>There’s a design note hidden here</span><ArrowIcon diagonal />
+                  <span>View the design rationale</span><ArrowIcon diagonal />
                 </a>
               )}
             </div>

@@ -16,7 +16,7 @@ function DesignApproachPage({ approach }: DesignApproachPageProps) {
       </a>
       <p className="eyebrow"><span className="eyebrow-line" /> Studio notes · {approach.project.category}</p>
       <header className="approach-heading">
-        <p className="approach-overline">A different way to look at the work</p>
+        <p className="approach-overline">Design rationale</p>
         <h1 className="page-title">{approach.title}</h1>
         <p className="large-copy">{approach.introduction}</p>
       </header>
@@ -50,7 +50,7 @@ function DesignApproachPage({ approach }: DesignApproachPageProps) {
       <section className="approach-explanation">
         <div>
           <p className="eyebrow"><span className="eyebrow-line" /> The thinking</p>
-          <h2>{approach.project.title}, re-framed.</h2>
+          <h2>{approach.project.title}: design rationale.</h2>
         </div>
         <p>{approach.approach}</p>
       </section>
@@ -72,9 +72,9 @@ function DesignApproachPage({ approach }: DesignApproachPageProps) {
       </p>
 
       <div className="project-detail-next">
-        <span>Back to the portfolio</span>
+        <span>Portfolio</span>
         <a href={getRouteHref('/work/')}>
-          Explore selected work<ArrowIcon diagonal />
+          View selected work<ArrowIcon diagonal />
         </a>
       </div>
     </article>

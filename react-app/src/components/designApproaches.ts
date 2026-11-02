@@ -20,13 +20,13 @@ export const designApproaches: DesignApproach[] = [
   {
     slug: 'grid-as-language',
     project: findProject('modular-identity'),
-    title: 'Let the grid do the talking.',
-    introduction: 'A modular identity can feel expressive without losing its structure. This study treats the grid as the visual language—not just a production guide.',
-    approach: 'Start with a simple unit, then let scale, repetition, and cropping create a family of compositions. The result feels consistent across applications while each layout keeps its own energy.',
+    title: 'The grid as a visual language.',
+    introduction: 'A modular identity can remain expressive while retaining structure. This study uses the grid as an active part of the visual language.',
+    approach: 'A simple unit provides the foundation. Scale, repetition, and cropping then create a family of compositions that remain coherent while allowing each application to feel distinct.',
     principles: [
-      { title: 'Build from one unit', description: 'A shared module gives every letterform and layout a clear relationship.' },
-      { title: 'Make structure visible', description: 'Keep construction lines and technical labels in the composition to make the system part of the story.' },
-      { title: 'Use contrast with intent', description: 'Oversized shapes against fine rules create hierarchy without adding visual clutter.' },
+      { title: 'Establish a core unit', description: 'A shared module creates a consistent relationship between letterforms and layouts.' },
+      { title: 'Reveal the structure', description: 'Construction lines and technical labels make the underlying system part of the visual narrative.' },
+      { title: 'Apply contrast with purpose', description: 'Oversized forms and fine rules establish hierarchy without unnecessary visual clutter.' },
     ],
     gallery: [
       findProject('modular-identity'),
@@ -37,13 +37,13 @@ export const designApproaches: DesignApproach[] = [
   {
     slug: 'bold-editorial-signal',
     project: findProject('design-practice-poster'),
-    title: 'Make one idea impossible to miss.',
-    introduction: 'A poster has a small window to earn attention. This approach strips the layout back to one clear message, then uses scale and color to make it memorable.',
-    approach: 'Treat the headline as the image. A compact palette and generous negative space keep the message direct, while a small graphic gesture adds enough personality to reward a closer look.',
+    title: 'Establishing a clear visual signal.',
+    introduction: 'A poster has limited time to communicate. This approach focuses the composition on one clear message, using scale and color to make it legible and memorable.',
+    approach: 'The headline becomes the primary visual element. A compact palette and generous negative space keep the message direct, while a considered graphic detail adds character.',
     principles: [
-      { title: 'Lead with the message', description: 'Give the most important words the strongest scale and the clearest position.' },
-      { title: 'Limit the palette', description: 'A few deliberate colors make a bold statement easier to recognize and remember.' },
-      { title: 'Keep a little tension', description: 'Offset alignments and one unexpected detail stop a simple layout from feeling static.' },
+      { title: 'Prioritize the message', description: 'Give the most important words the strongest scale and clearest position.' },
+      { title: 'Restrict the palette', description: 'A focused set of colors makes the composition more cohesive and recognizable.' },
+      { title: 'Introduce visual tension', description: 'Offset alignments and a considered visual detail add movement to a restrained layout.' },
     ],
     gallery: [
       findProject('design-practice-poster'),
@@ -54,13 +54,13 @@ export const designApproaches: DesignApproach[] = [
   {
     slug: 'editorial-rhythm',
     project: findProject('editorial-spread'),
-    title: 'Give every page a rhythm.',
-    introduction: 'Good editorial design guides the eye without making every page feel the same. This approach balances a dependable layout with moments of surprise.',
-    approach: 'Create a repeatable typographic hierarchy first. Then vary image scale, color, and the pace of the margins so the reader moves naturally between quiet details and expressive moments.',
+    title: 'Creating rhythm across the page.',
+    introduction: 'Effective editorial design guides the reader while allowing each page to retain its own character. This approach balances a consistent structure with moments of visual contrast.',
+    approach: 'A repeatable typographic hierarchy provides the foundation. Image scale, color, and spacing can then vary to move the reader between quieter details and more expressive compositions.',
     principles: [
-      { title: 'Design for the sequence', description: 'Think about how a page follows the last one, not just how it looks on its own.' },
-      { title: 'Use type as navigation', description: 'Consistent levels of type help readers scan, pause, and find their way back.' },
-      { title: 'Let images change the pace', description: 'A full, vivid image can act as a pause between denser passages.' },
+      { title: 'Consider the sequence', description: 'Design each page in relation to the pages around it, as well as on its own.' },
+      { title: 'Use typography to guide', description: 'Consistent typographic levels help readers scan, pause, and navigate the content.' },
+      { title: 'Vary the visual pace', description: 'A full-page image can provide a considered pause between denser passages.' },
     ],
     gallery: [
       findProject('editorial-spread'),

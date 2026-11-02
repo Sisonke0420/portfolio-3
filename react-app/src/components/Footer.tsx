@@ -6,7 +6,7 @@ function Footer() {
       <a className="wordmark" href={getRouteHref('/')}>
         sm<span className="wordmark-dot">.</span>
       </a>
-      <p>Made with care, and a little bit of coffee.</p>
+      <p>Independent design and development · Johannesburg</p>
       <span>© 2026 Sisonke Miya</span>
     </footer>
   );

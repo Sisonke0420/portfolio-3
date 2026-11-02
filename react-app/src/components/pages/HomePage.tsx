@@ -9,9 +9,9 @@ function FeaturedWork() {
       <div className="section-heading">
         <div>
           <p className="eyebrow"><span className="eyebrow-line" /> Selected projects</p>
-          <h2>A few things<br />I’ve put into <span className="serif-word">the world.</span></h2>
+          <h2>Selected work<br /><span className="serif-word">with intention.</span></h2>
         </div>
-        <a className="text-link" href={getRouteHref('/work/')}>See all projects <ArrowIcon /></a>
+        <a className="text-link" href={getRouteHref('/work/')}>View all projects <ArrowIcon /></a>
       </div>
       <ProjectCarousel />
     </section>
@@ -23,110 +23,111 @@ function HomePage() {
     <div className="home-page">
       <section className="hero page-shell">
         <div className="hero-copy">
-          <p className="eyebrow"><span className="eyebrow-line" /> Graphic designer &amp; developer</p>
+          <p className="eyebrow"><span className="eyebrow-line" /> Independent designer &amp; developer</p>
           <h1>
             Thoughtful<br />
             design for a<br />
             <span className="accent-word">changing</span> world<span className="accent-period">.</span>
           </h1>
           <p className="hero-description">
-            I’m Sisonke, a graphic designer and developer bringing ideas to life
-            through thoughtful visual identities, clear design systems, and
-            responsive digital experiences.
+            I partner with ambitious people to shape clear brand identities and
+            digital experiences, bringing considered art direction together
+            with accessible, detail-led development.
           </p>
           <div className="hero-actions">
             <a className="button button-dark" href={getRouteHref('/work/')}>
-              Explore my work <ArrowIcon />
+              View selected work <ArrowIcon />
             </a>
-            <a className="text-link" href={getRouteHref('/about/')}>A little about me</a>
+            <a className="text-link" href={getRouteHref('/about/')}>About the practice</a>
           </div>
           <div className="hero-note">
             <span className="note-spark">✳</span>
-            <span>Based in Johannesburg, GP<br />Working everywhere</span>
+            <span>Johannesburg, South Africa<br />Available worldwide</span>
           </div>
         </div>
-        <div className="hero-video">
-          <video
-            className="hero-video-player"
-            poster={heroProjectImage}
-            autoPlay
-            muted
-            loop
-            playsInline
-            aria-label="Portfolio hero video coming soon"
+        <figure className="hero-artwork">
+          <img
+            className="hero-artwork-image"
+            src={heroProjectImage}
+            alt="Portrait overlaid with white geometric shapes on a blue background"
           />
-          <div className="hero-video-placeholder">
-            <span className="hero-video-kicker">Sisonke Miya · Showreel</span>
-            <span className="hero-video-message">Video coming soon</span>
+          <div className="hero-artwork-topline" aria-hidden="true">
+            <span>Selected visual / 04</span>
+            <span>SM<span className="wordmark-dot">.</span></span>
           </div>
-        </div>
+          <figcaption className="hero-artwork-caption">
+            <span className="hero-artwork-number">04</span>
+            <span className="hero-artwork-title">
+              <strong>Portrait Art Direction</strong>
+              <small>Art direction · Portrait</small>
+            </span>
+            <span className="hero-artwork-spark" aria-hidden="true">✳</span>
+          </figcaption>
+        </figure>
         <div className="hero-index"><span>01</span><span className="index-rule" /><span>04</span></div>
       </section>
 
       <section className="intro-strip">
         <div className="page-shell intro-inner">
-          <p>Good work starts with <em>good questions.</em></p>
-          <a href={getRouteHref('/about/')} className="round-link" aria-label="Learn about Sisonke Miya">
+          <p>Effective design begins with <em>clear objectives.</em></p>
+          <a href={getRouteHref('/about/')} className="round-link" aria-label="Learn about Sisonke Miya’s design approach">
             <ArrowIcon diagonal />
           </a>
         </div>
       </section>
       <section className="home-practice page-shell">
         <div className="home-practice-heading">
-          <p className="eyebrow"><span className="eyebrow-line" /> A thoughtful process</p>
-          <h2>Good ideas deserve<br /><span className="serif-word">careful making.</span></h2>
+          <p className="eyebrow"><span className="eyebrow-line" /> From concept to craft</p>
+          <h2>From the first question<br /><span className="serif-word">to the final detail.</span></h2>
           <p>
-            Every project is a chance to make something clear, useful, and
-            memorable. I bring design and development together to carry an idea
-            from its first sketch to its final screen.
+            Effective design is the result of clear thinking and considered
+            execution. I develop the concept, establish its visual language,
+            and carry it through to a cohesive final experience.
           </p>
         </div>
         <div className="home-practice-grid">
           <article>
-            <p className="discipline-number">01 / FIND THE FOCUS</p>
-            <h3>Start with what matters.</h3>
+            <p className="discipline-number">01 / FIND THE ESSENTIAL</p>
+            <h3>Establish a clear direction.</h3>
             <p>
-              We get to the heart of the idea, the people it needs to reach, and
-              the story it should tell. A clear direction gives every design
-              decision a reason.
+              We define the audience, objectives, and opportunity. A shared
+              foundation gives the work focus and direction.
             </p>
           </article>
           <article>
-            <p className="discipline-number">02 / SHAPE THE STORY</p>
-            <h3>Make it recognisable.</h3>
+            <p className="discipline-number">02 / BUILD A VISUAL LANGUAGE</p>
+            <h3>Develop a distinctive visual language.</h3>
             <p>
-              Thoughtful type, color, and composition turn that direction into a
-              visual identity with character—one that feels consistent wherever
-              it meets its audience.
+              Typography, imagery, and color come together in a distinctive
+              system, designed to remain consistent across applications.
             </p>
           </article>
           <article>
-            <p className="discipline-number">03 / BRING IT TO LIFE</p>
-            <h3>Build for real people.</h3>
+            <p className="discipline-number">03 / IMPLEMENT WITH CARE</p>
+            <h3>Deliver a refined digital experience.</h3>
             <p>
-              On screen, the details matter just as much. Responsive layouts,
-              accessible interactions, and careful development help the idea
-              work beautifully in use.
+              Accessible interactions and considered front-end development
+              make the finished experience intuitive and reliable.
             </p>
           </article>
         </div>
       </section>
       <section className="home-belief">
         <div className="page-shell home-belief-inner">
-          <p className="eyebrow"><span className="eyebrow-line" /> The details make the difference</p>
-          <h2>Design should feel good<br />and <span className="serif-word">work hard.</span></h2>
+          <p className="eyebrow"><span className="eyebrow-line" /> Design with purpose</p>
+          <h2>Design with clarity.<br /><span className="serif-word">Built to perform.</span></h2>
           <div className="home-belief-copy">
             <p>
-              A strong visual idea can do more than catch someone’s eye. It can
-              make information easier to understand, help a brand feel familiar,
-              and give people a clear next step.
+              Design should do more than attract attention. It should clarify
+              complex ideas, build recognition, and help people take the next
+              step with confidence.
             </p>
             <p>
-              That’s why I think about the full experience: how a layout reads,
-              how it adapts to a smaller screen, and how each interaction feels.
-              The result should be expressive, accessible, and made to last.
+              I consider the complete experience: how a message reads, how a
+              layout adapts, and how each interaction responds. The result is
+              designed to be distinctive, inclusive, and enduring.
             </p>
-            <a className="text-link" href={getRouteHref('/about/')}>More about my approach <ArrowIcon /></a>
+            <a className="text-link" href={getRouteHref('/about/')}>Explore my approach <ArrowIcon /></a>
           </div>
         </div>
       </section>

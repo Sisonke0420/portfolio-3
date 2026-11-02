@@ -39,7 +39,6 @@ function App({ initialPath }: AppProps) {
   const [currentPage, setCurrentPage] = useState<Page>(startingLocation.page);
   const [projectSlug, setProjectSlug] = useState(startingLocation.projectSlug);
   const [darkMode, setDarkMode] = useState(false);
-  const [themeReady, setThemeReady] = useState(false);
   const selectedProject = projects.find((project) => getProjectSlug(project) === projectSlug);
   const selectedApproach = designApproaches.find((approach) => approach.slug === projectSlug);
 
@@ -113,15 +112,39 @@ function App({ initialPath }: AppProps) {
   }, [currentPage, projectSlug]);
 
   useEffect(() => {
-    // Read the saved preference after hydration before persisting state, avoiding an initial overwrite.
-    setDarkMode(window.localStorage.getItem('portfolio-theme') === 'dark');
-    setThemeReady(true);
-  }, []);
+    let themeTimer: number;
 
-  useEffect(() => {
-    if (!themeReady) return;
-    window.localStorage.setItem('portfolio-theme', darkMode ? 'dark' : 'light');
-  }, [darkMode, themeReady]);
+    function updateTheme() {
+      window.clearTimeout(themeTimer);
+      const now = new Date();
+      const hour = now.getHours();
+      setDarkMode(hour >= 18 || hour < 6);
+
+      const nextTransition = new Date(now);
+      if (hour < 6) {
+        nextTransition.setHours(6, 0, 0, 0);
+      } else if (hour < 18) {
+        nextTransition.setHours(18, 0, 0, 0);
+      } else {
+        nextTransition.setDate(nextTransition.getDate() + 1);
+        nextTransition.setHours(6, 0, 0, 0);
+      }
+
+      themeTimer = window.setTimeout(updateTheme, nextTransition.getTime() - now.getTime());
+    }
+
+    function updateThemeWhenVisible() {
+      if (document.visibilityState === 'visible') updateTheme();
+    }
+
+    updateTheme();
+    document.addEventListener('visibilitychange', updateThemeWhenVisible);
+
+    return () => {
+      window.clearTimeout(themeTimer);
+      document.removeEventListener('visibilitychange', updateThemeWhenVisible);
+    };
+  }, []);
 
   return (
     <>
@@ -143,8 +166,6 @@ function App({ initialPath }: AppProps) {
         <Header
           currentPage={currentPage}
           pages={pages}
-          darkMode={darkMode}
-          onToggleTheme={() => setDarkMode((isDarkMode) => !isDarkMode)}
         />
         <div className="header-spacer" aria-hidden="true" />
         <main id="main-content" key={currentPage} tabIndex={-1}>

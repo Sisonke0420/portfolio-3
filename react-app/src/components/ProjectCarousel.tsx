@@ -91,7 +91,7 @@ function ProjectCarousel() {
                 href={getRouteHref(activeApproachHref)}
                 aria-label={`Discover the hidden design approach for ${activeProject.title}`}
               >
-                <span>There’s a design note hidden here</span><ArrowIcon diagonal />
+                <span>View the design rationale</span><ArrowIcon diagonal />
               </a>
             )}
           </div>

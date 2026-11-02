@@ -50,7 +50,7 @@ function ProjectDetailPage({ project }: ProjectDetailPageProps) {
       <div className="project-detail-copy">
         <div>
           <p className="eyebrow"><span className="eyebrow-line" /> Project overview</p>
-          <h2>A closer look at the work.</h2>
+          <h2>Project rationale and execution.</h2>
         </div>
         <div>
           <p>{project.summary}</p>
@@ -59,7 +59,7 @@ function ProjectDetailPage({ project }: ProjectDetailPageProps) {
         </div>
       </div>
       <div className="project-detail-next">
-        <span>Next project</span>
+        <span>Continue exploring</span>
         <a href={getProjectHref(nextProject)}>
           {nextProject.title}<ArrowIcon diagonal />
         </a>
