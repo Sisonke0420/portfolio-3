@@ -8,7 +8,7 @@ function Callout() {
     <aside className="callout">
       <div>
         <p className="eyebrow"><GlitchSlogan messages={['For promising ideas and useful conversations', 'For plans with potential', 'For the thing you keep thinking about']} /></p>
-        <GlitchHeading as="h2">Have a project?<br /><span className="serif-word">Let’s untangle it.</span></GlitchHeading>
+        <GlitchHeading as="h2">Have a project<br /><span className="serif-word">in mind?</span></GlitchHeading>
       </div>
       <a className="round-link round-link-light" href={getRouteHref('/contact/')} aria-label="Discuss a project">
         <ArrowIcon diagonal />

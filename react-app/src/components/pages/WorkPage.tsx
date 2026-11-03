@@ -9,21 +9,20 @@ function WorkPage() {
       <p className="eyebrow"><span className="eyebrow-line" /> <GlitchSlogan messages={['Portfolio · 2022—2026', 'Proof of curiosity · 2022—2026', 'A selection of solved puzzles']} /></p>
       <div className="work-heading">
         <GlitchHeading as="h1" className="page-title">Ideas, shaped<br />with <span className="serif-word">a point to make.</span></GlitchHeading>
-        <p>Visual identity, editorial design, typography, and motion—with a clear point of view and a reason for being.</p>
+        <p>A visual-led selection of identity, editorial, typography, and moving-image work—each shaped around a clear idea and audience.</p>
       </div>
       <p className="work-introduction">
-        This selection spans visual identity, editorial design, posters, and
-        moving image. Each project starts with an idea and gets shaped into
-        something clear, useful, and hopefully more memorable than another
-        open browser tab.
+        The wider practice also includes web and mobile products, audio and
+        moving image, and application systems. This selection focuses on
+        visual work, showing how research and a clear concept become useful
+        design.
       </p>
       <ProjectGrid />
       <div className="work-closing-copy">
-        <p className="eyebrow"><span className="eyebrow-line" /> Commission enquiries</p>
+        <p className="eyebrow"><span className="eyebrow-line" /> Start with the brief</p>
         <p>
-          From one-off posters to broader visual systems, the work takes
-          different shapes. Have a project in mind? Tell me what it needs to
-          do, who it’s for, and when it needs to exist.
+          From a single visual asset to a connected digital product, start
+          with what it needs to do, who it is for, and when it needs to launch.
         </p>
       </div>
       <Callout />

@@ -9,7 +9,7 @@ import ProjectDetailPage from './components/pages/ProjectDetailPage';
 import WorkPage from './components/pages/WorkPage';
 import CustomCursor from './components/CustomCursor';
 import { GlitchHeadingProvider } from './components/GlitchHeading';
-import { InteractionSoundsProvider, SoundToggle } from './components/InteractionSounds';
+import { InteractionSoundsProvider } from './components/InteractionSounds';
 import { pages, type Page } from './components/pageConfig';
 import projects, { getProjectSlug } from './components/projects';
 import { designApproaches } from './components/designApproaches';
@@ -163,7 +163,6 @@ function App({ initialPath }: AppProps) {
             <p className="splash-caption">Good ideas. Fewer unnecessary things.</p>
           </div>
           <span className="splash-location">Johannesburg · South Africa</span>
-          <SoundToggle splash enableEffect="splash" />
         </div>
       )}
       <div className={darkMode ? 'site theme-dark' : 'site'}>

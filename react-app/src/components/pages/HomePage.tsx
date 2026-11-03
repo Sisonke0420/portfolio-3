@@ -90,9 +90,9 @@ function HomePage() {
             <span className="accent-word">changing</span> world<span className="accent-period">.</span>
           </GlitchHeading>
           <p className="hero-description">
-            I help ambitious people turn big ideas into clear identities and
-            digital experiences. Considered art direction, accessible code, and
-            no buttons that only look clickable.
+            I work across visual identity and editorial design, web and mobile
+            products, audio and moving image, and application systems. Clear
+            ideas, considered craft, and interactions that do what they say.
           </p>
           <div className="hero-actions">
             <a className="button button-dark" href={getRouteHref('/work/')}>
@@ -139,7 +139,7 @@ function HomePage() {
 
       <section className="intro-strip">
         <div className="page-shell intro-inner">
-          <p>Effective design begins with <em>asking better questions.</em></p>
+          <p>Good work begins with <em>asking better questions.</em></p>
           <a href={getRouteHref('/about/')} className="round-link" aria-label="Learn about Sisonke Miya’s design approach">
             <ArrowIcon diagonal />
           </a>
@@ -147,12 +147,12 @@ function HomePage() {
       </section>
       <section className="home-practice page-shell">
         <div className="home-practice-heading">
-          <p className="eyebrow"><span className="eyebrow-line" /> A process, not a series of guesses</p>
+          <p className="eyebrow"><span className="eyebrow-line" /> A clear process, from idea to execution</p>
           <GlitchHeading as="h2">From the first sketch<br /><span className="serif-word">to the last tiny detail.</span></GlitchHeading>
           <p>
-            Good work takes clear thinking and a healthy respect for the details.
-            I shape the concept, build its visual language, and see it through
-            to a finished experience (including the bits most people never notice).
+            I take a brief from research and concept through design,
+            production, and implementation—keeping each discipline in service
+            of the same idea.
           </p>
         </div>
         <div className="home-practice-grid">
@@ -160,32 +160,31 @@ function HomePage() {
             <p className="discipline-number">01 / ASK THE USEFUL QUESTIONS</p>
             <h3>Work out what actually matters.</h3>
             <p>
-              Who is it for? What should it do? And no, “make it pop” is not a
-              complete brief. A clear starting point makes the next decisions
-              much easier.
+              Who is it for, and what should it help them do? A useful brief
+              gives every design and development decision a clearer purpose.
             </p>
           </article>
           <article>
             <p className="discipline-number">02 / GIVE IT A POINT OF VIEW</p>
             <h3>Make the identity recognisable.</h3>
             <p>
-              Type, imagery, and color become a visual system with personality.
-              Consistent, not copy-pasted into a personality vacuum.
+              Type, imagery, and color form a recognizable system that feels
+              consistent across touchpoints without losing its personality.
             </p>
           </article>
           <article>
             <p className="discipline-number">03 / MAKE IT WORK IN REAL LIFE</p>
             <h3>Build the thing people actually use.</h3>
             <p>
-              Accessible interactions and careful front-end work mean it looks
-              good, works on your phone, and doesn’t make anyone fight a menu.
+              Accessible, responsive implementation helps the experience work
+              across devices—with fewer surprises and no menu-related drama.
             </p>
           </article>
         </div>
       </section>
       <section className="home-belief">
         <div className="page-shell home-belief-inner">
-          <p className="eyebrow"><span className="eyebrow-line" /> Pretty is nice. Useful is nicer.</p>
+          <p className="eyebrow"><span className="eyebrow-line" /> Distinctive by design. Useful by default.</p>
           <GlitchHeading as="h2">Make it memorable.<br /><span className="serif-word">Make it make sense.</span></GlitchHeading>
           <div className="home-belief-copy">
             <p>
@@ -195,8 +194,8 @@ function HomePage() {
             </p>
             <p>
               I think about the whole experience: how it reads, how it behaves
-              on a small screen, and whether that button does what it says.
-              Distinctive, inclusive, and refreshingly predictable.
+              on a small screen, and whether each interaction does what it
+              promises. Distinctive, inclusive, and refreshingly predictable.
             </p>
             <a className="text-link" href={getRouteHref('/about/')}>Explore my approach <ArrowIcon /></a>
           </div>

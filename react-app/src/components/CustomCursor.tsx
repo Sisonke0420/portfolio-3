@@ -55,13 +55,12 @@ function CustomCursor({ darkMode }: CustomCursorProps) {
       const cursorLabel = control?.matches('.project-note-toggle') ? 'note'
         : control?.matches('.carousel-arrow, .project-arrow') ? 'next'
           : control?.matches('.project-image-trigger') ? 'zoom'
-            : control?.matches('.sound-toggle') ? 'sound'
-              : control?.matches('.project-mood-filter') ? 'sort'
-                : control?.tagName === 'A' ? 'view'
-                  : control ? 'go'
-                    : hoveredElement?.closest('.project-card, .about-card, .discipline-card, .tool-list li, .contact-card, .approach-principle')
-                      ? 'peek'
-                      : 'go';
+            : control?.matches('.project-mood-filter') ? 'sort'
+              : control?.tagName === 'A' ? 'view'
+                : control ? 'go'
+                  : hoveredElement?.closest('.project-card, .about-card, .discipline-card, .tool-list li, .contact-card, .approach-principle')
+                    ? 'peek'
+                    : 'go';
       if (labelRef.current) labelRef.current.textContent = cursorLabel;
       document.body.classList.toggle(
         'cursor-over-interactive',

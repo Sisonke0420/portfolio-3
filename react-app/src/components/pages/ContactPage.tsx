@@ -37,7 +37,7 @@ function ContactPage() {
       <div className="contact-content">
         <div>
           <GlitchHeading as="h1" className="page-title">Have a good idea?<br /><span className="serif-word">Let’s give it a go.</span></GlitchHeading>
-          <p className="large-copy">Have a design problem, a promising idea, or a strong opinion about type? Tell me the essentials and we can work out the scope, next steps, and whether that opinion is justified.</p>
+          <p className="large-copy">Have a project in visual identity and editorial design, web and mobile products, audio and moving image, or application systems? Share the essentials and we can clarify the scope, next steps, and what a good result should do.</p>
           <p className="contact-aside">A rough brief is welcome. So is a first draft. They can both arrive in their comfortable clothes.</p>
           <a className="contact-email" href="mailto:0420nathi@gmail.com">
             0420nathi@gmail.com <ArrowIcon diagonal />
@@ -55,13 +55,10 @@ function ContactPage() {
               What kind of help do you need?
               <select name="service" defaultValue="">
                 <option value="">Choose a service (optional)</option>
-                <option>Visual identity</option>
-                <option>Graphic or editorial design</option>
-                <option>Web application development</option>
-                <option>Mobile application development</option>
-                <option>Sound design and audio engineering</option>
-                <option>Video editing and post-production</option>
-                <option>Back-end application development</option>
+                <option>Visual identity and editorial design</option>
+                <option>Web and mobile products</option>
+                <option>Audio and moving image</option>
+                <option>Application systems</option>
                 <option>Something else</option>
               </select>
             </label>
@@ -130,7 +127,7 @@ function ContactPage() {
           <span className="contact-symbol">✳</span>
           <p className="eyebrow">The creative corner</p>
           <GlitchHeading as="h2">Making room<br />for good ideas</GlitchHeading>
-          <p>From visual identity and digital products to audio, post-production, and back-end engineering, I welcome projects with a clear purpose. For work that spans disciplines, I can shape a cohesive approach across the full experience.</p>
+          <p>I bring visual identity and editorial design, web and mobile products, audio and moving image, and application systems together around one clear brief.</p>
           <a href="mailto:0420nathi@gmail.com" className="button button-light">Send an enquiry <ArrowIcon /></a>
           <div className="contact-game-desktop">
             <SnakeGame />

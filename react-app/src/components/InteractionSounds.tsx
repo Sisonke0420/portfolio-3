@@ -1,15 +1,11 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { createContext, useCallback, useContext, useEffect, useMemo, useRef, type ReactNode } from 'react';
 
 type SoundEffect = 'click' | 'primary' | 'splash';
 type InteractionSoundsContextValue = {
-  enabled: boolean;
-  setEnabled: (enabled: boolean) => void;
-  enableSounds: (firstEffect: SoundEffect) => void;
   playEffect: (effect: SoundEffect) => void;
 };
 
 const InteractionSoundsContext = createContext<InteractionSoundsContextValue | null>(null);
-const SPLASH_SOUND_PLAYED_KEY = 'portfolio-splash-gong-played';
 
 function useInteractionSounds() {
   const context = useContext(InteractionSoundsContext);
@@ -18,8 +14,8 @@ function useInteractionSounds() {
 }
 
 function InteractionSoundsProvider({ children }: { children: ReactNode }) {
-  const [enabled, setEnabled] = useState(false);
   const audioContext = useRef<AudioContext | null>(null);
+  const splashSoundPlayed = useRef(false);
 
   const playAudioEffect = useCallback((effect: SoundEffect) => {
     if (typeof window.AudioContext === 'undefined') return;
@@ -75,65 +71,46 @@ function InteractionSoundsProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const playEffect = useCallback((effect: SoundEffect) => {
-    if (enabled) playAudioEffect(effect);
-  }, [enabled, playAudioEffect]);
-
-  const enableSounds = useCallback((firstEffect: SoundEffect) => {
-    setEnabled(true);
-    playAudioEffect(firstEffect);
+    playAudioEffect(effect);
   }, [playAudioEffect]);
 
   useEffect(() => {
-    if (window.localStorage.getItem(SPLASH_SOUND_PLAYED_KEY) === 'true') return;
-    window.localStorage.setItem(SPLASH_SOUND_PLAYED_KEY, 'true');
-    setEnabled(true);
+    if (splashSoundPlayed.current) return;
+    splashSoundPlayed.current = true;
     playAudioEffect('splash');
   }, [playAudioEffect]);
 
   useEffect(() => {
-    if (!enabled) return undefined;
+    function resumeAudio() {
+      if (audioContext.current?.state === 'suspended') {
+        void audioContext.current.resume();
+      }
+    }
 
     function playInteractionSound(event: MouseEvent) {
       const target = event.target;
-      if (!(target instanceof Element) || target.closest('.sound-toggle')) return;
+      if (!(target instanceof Element)) return;
       const control = target.closest('a, button');
       if (!control || control.hasAttribute('disabled')) return;
       playAudioEffect(control.matches('.button, .project-mood-filter.active') ? 'primary' : 'click');
     }
 
+    document.addEventListener('pointerdown', resumeAudio);
+    document.addEventListener('keydown', resumeAudio);
     document.addEventListener('click', playInteractionSound);
-    return () => document.removeEventListener('click', playInteractionSound);
-  }, [enabled, playAudioEffect]);
+    return () => {
+      document.removeEventListener('pointerdown', resumeAudio);
+      document.removeEventListener('keydown', resumeAudio);
+      document.removeEventListener('click', playInteractionSound);
+    };
+  }, [playAudioEffect]);
 
   const contextValue = useMemo(
-    () => ({ enabled, setEnabled, enableSounds, playEffect }),
-    [enabled, enableSounds, playEffect],
+    () => ({ playEffect }),
+    [playEffect],
   );
 
   return <InteractionSoundsContext.Provider value={contextValue}>{children}</InteractionSoundsContext.Provider>;
 }
 
-function SoundToggle({ enableEffect = 'click', splash = false }: { enableEffect?: SoundEffect; splash?: boolean }) {
-  const context = useInteractionSounds();
-
-  return (
-    <button
-      className={`sound-toggle${splash ? ' sound-toggle-splash' : ''}`}
-      type="button"
-      aria-pressed={context.enabled}
-      onClick={() => {
-        if (context.enabled) {
-          context.setEnabled(false);
-        } else {
-          context.enableSounds(enableEffect);
-        }
-      }}
-      aria-label={context.enabled ? 'Turn sounds off' : 'Turn sounds on'}
-    >
-      <span className="sound-toggle-icon" aria-hidden="true">{context.enabled ? '♫' : '♪'}</span>
-      Sounds {context.enabled ? 'on' : 'off'}
-    </button>
-  );
-}
-
-export { InteractionSoundsProvider, SoundToggle, useInteractionSounds };
+export { InteractionSoundsProvider, useInteractionSounds };
