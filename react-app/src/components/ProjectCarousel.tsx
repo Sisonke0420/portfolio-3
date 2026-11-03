@@ -8,6 +8,7 @@ import projects, { getProjectHref } from './projects';
 function ProjectCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [noteOpen, setNoteOpen] = useState(false);
   const activeProject = projects[activeIndex];
   const activeApproachHref = getDesignApproachHref(activeProject);
 
@@ -22,6 +23,8 @@ function ProjectCarousel() {
 
     return () => window.clearInterval(timer);
   }, [isPaused]);
+
+  useEffect(() => setNoteOpen(false), [activeIndex]);
 
   function showPrevious() {
     // Wrap around so the carousel remains navigable at either end of the project list.
@@ -116,6 +119,17 @@ function ProjectCarousel() {
               Explore a design approach <ArrowIcon diagonal />
             </a>
           )}
+          <p className="project-summary">{activeProject.summary}</p>
+          <button
+            className="project-note-toggle"
+            type="button"
+            aria-expanded={noteOpen}
+            aria-controls="carousel-project-note"
+            onClick={() => setNoteOpen((open) => !open)}
+          >
+            {noteOpen ? 'Hide the tiny process note' : 'A tiny process note'}
+          </button>
+          <p className="project-fun-note" id="carousel-project-note">{activeProject.funNote}</p>
         </article>
       </div>
       <div className="project-carousel-controls">

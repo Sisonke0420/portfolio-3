@@ -50,6 +50,10 @@ function CustomCursor({ darkMode }: CustomCursorProps) {
       pointerX = event.clientX;
       pointerY = event.clientY;
       const hoveredElement = document.elementFromPoint(pointerX, pointerY);
+      document.body.classList.toggle(
+        'cursor-over-interactive',
+        Boolean(hoveredElement?.closest('a, button, input, textarea, select, [role="button"]')),
+      );
       document.body.classList.toggle('cursor-over-card', Boolean(hoveredElement?.closest([
         '.project-card',
         '.about-card',
@@ -75,6 +79,7 @@ function CustomCursor({ darkMode }: CustomCursorProps) {
       isInitialized = false;
       setIsVisible(false);
       document.body.classList.remove('cursor-over-card');
+      document.body.classList.remove('cursor-over-interactive');
       if (animationFrame !== null) {
         window.cancelAnimationFrame(animationFrame);
         animationFrame = null;
@@ -92,6 +97,7 @@ function CustomCursor({ darkMode }: CustomCursorProps) {
       if (animationFrame !== null) window.cancelAnimationFrame(animationFrame);
       document.body.classList.remove('has-custom-cursor');
       document.body.classList.remove('cursor-over-card');
+      document.body.classList.remove('cursor-over-interactive');
     };
   }, []);
 
@@ -112,7 +118,7 @@ function CustomCursor({ darkMode }: CustomCursorProps) {
           }}
         />
       ))}
-      <span className="custom-cursor-head" ref={cursorRef} />
+      <span className="custom-cursor-head" ref={cursorRef}><span className="custom-cursor-label">go</span></span>
     </span>
   );
 }

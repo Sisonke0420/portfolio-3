@@ -7,19 +7,18 @@ function AboutPage() {
       <p className="eyebrow"><span className="eyebrow-line" /> About the practice</p>
       <div className="about-layout">
         <div>
-          <h1 className="page-title">Design-minded.<br /><span className="serif-word">Detail-driven.</span></h1>
+          <h1 className="page-title">Curious by nature.<br /><span className="serif-word">Fussy about details.</span></h1>
           <p className="large-copy">
-            I’m Sisonke Miya, an independent graphic designer and developer
-            based in Johannesburg. My practice brings visual storytelling and
-            digital craft together to create distinctive identities and
-            accessible experiences, with close attention to the message, the
-            interaction, and the details that connect them.
+            I’m Sisonke Miya, a graphic designer and developer
+            based in Johannesburg. I bring visual storytelling and digital
+            craft together to make distinctive identities and accessible
+            experiences. I care about the big idea, the tiny details, and the
+            fact that the tiny details have a habit of becoming the big idea.
           </p>
           <p className="about-ai-copy">
-            I also explore how AI and emerging technologies can support research
-            and creative experimentation. They are tools within the process—not
-            substitutes for human judgment, a clear purpose, or responsible
-            design.
+            I explore AI and emerging technology as tools for research and
+            experimentation. Useful assistants; terrible substitutes for
+            judgment, purpose, or checking the work before it goes out.
           </p>
         </div>
         <div className="about-card">
@@ -30,8 +29,8 @@ function AboutPage() {
       <div className="about-details">
         <div>
           <h2>Approach</h2>
-          <p>I work with people and teams to define the message, audience, and intended outcome. From research and concept development to visual design and implementation, I keep clarity, accessibility, and craft central to each decision.</p>
-          <p>From typography to interface structure, each choice supports the wider idea. The aim is work that is distinctive, useful, and clear to the people it serves.</p>
+          <p>I work with people and teams to clarify the message, audience, and intended outcome. Then it’s research, concepts, visual design, and implementation—with clarity, accessibility, and craft in the room at every stage.</p>
+          <p>From typography to interface structure, each choice should earn its place. The aim: work that feels distinctive, does its job, and doesn’t need a user manual.</p>
         </div>
         <div>
           <h2>Capabilities</h2>
@@ -45,26 +44,26 @@ function AboutPage() {
       </div>
       <section className="about-collaboration">
         <p className="eyebrow"><span className="eyebrow-line" /> A considered collaboration</p>
-        <h2>Listen carefully.<br /><span className="serif-word">Create with purpose.</span></h2>
+        <h2>Listen carefully.<br /><span className="serif-word">Then make it make sense.</span></h2>
         <p>
-          A strong collaboration starts with clear communication and shared
-          objectives. I ask the right questions, share work at meaningful
-          milestones, and connect design decisions to the project’s goals.
+          A good collaboration starts with clear communication and shared
+          objectives. I ask the useful questions, share work at the right
+          moments, and make sure design decisions have a reason beyond “it
+          looked cool at 1 a.m.”
         </p>
         <p>
-          Ideas are tested and refined throughout the process, balancing
-          experimentation with a consistent focus on clarity, usability, and
-          the intended outcome.
+          Ideas get tested and refined as we go. There’s room to experiment,
+          but clarity, usability, and the actual brief still get the final say.
         </p>
       </section>
       <section className="about-disciplines" aria-labelledby="disciplines-heading">
         <p className="eyebrow"><span className="eyebrow-line" /> Areas of practice</p>
-        <h2 id="disciplines-heading">Design with purpose.<br /><span className="serif-word">Develop with precision.</span></h2>
+        <h2 id="disciplines-heading">Make it distinctive.<br /><span className="serif-word">Make it work.</span></h2>
         <div className="discipline-grid">
           <article className="discipline-card">
             <p className="discipline-number">01 / GRAPHIC DESIGN</p>
-            <h3>Build a distinctive visual identity.</h3>
-            <p>I develop coherent visual languages that help brands communicate with clarity and consistency across every touchpoint.</p>
+            <h3>Give the brand a recognisable face.</h3>
+            <p>I build visual languages that help brands communicate clearly and consistently—without looking like they downloaded the same template.</p>
             <ul>
               <li>Brand identity and logo systems</li>
               <li>Typography, color, and layout</li>
@@ -74,8 +73,8 @@ function AboutPage() {
           </article>
           <article className="discipline-card">
             <p className="discipline-number">02 / DEVELOPMENT</p>
-            <h3>Translate design into accessible experiences.</h3>
-            <p>I build responsive, reliable interfaces around the needs of the people using them, carrying design intent through to implementation.</p>
+            <h3>Turn the design into a usable website.</h3>
+            <p>I build responsive, accessible interfaces around the people using them. The design survives contact with an actual browser. Imagine that.</p>
             <ul>
               <li>Semantic HTML, modern CSS, and JavaScript</li>
               <li>Interactive, typed interfaces with React and TypeScript</li>
@@ -88,43 +87,44 @@ function AboutPage() {
       {/* Keep process and tools separate from the development skills listed above. */}
       <section className="developer-practice" aria-labelledby="developer-practice-heading">
         <p className="eyebrow"><span className="eyebrow-line" /> Development practice</p>
-        <h2 id="developer-practice-heading">Considered development<br /><span className="serif-word">at every stage.</span></h2>
+        <h2 id="developer-practice-heading">Thoughtful development<br /><span className="serif-word">minus the guesswork.</span></h2>
         <p className="developer-practice-intro">
-          A polished website depends on more than appearance. It must behave
-          reliably, adapt to different contexts, and remain maintainable. I
-          carry design intent through planning, implementation, and testing.
+          A polished website needs more than a good first impression. It should
+          work reliably, adapt to real screens, and make sense to the next
+          person who opens the code. I plan, build, and test with all three in
+          mind.
         </p>
         <div className="developer-practice-grid">
           <article>
             <p className="discipline-number">01 / PLAN</p>
-            <h3>Define the structure and user flows.</h3>
-            <p>I translate goals and content into clear page structures and user flows, considering hierarchy, keyboard navigation, and accessibility from the outset.</p>
+            <h3>Plan before opening 37 tabs.</h3>
+            <p>I turn goals and content into clear page structures and user flows, with hierarchy, keyboard navigation, and accessibility considered from the start.</p>
           </article>
           <article>
             <p className="discipline-number">02 / BUILD</p>
-            <h3>Build for responsive, reliable use.</h3>
-            <p>I use semantic HTML, CSS, JavaScript, React, and TypeScript to create reusable interfaces that remain consistent and straightforward to maintain.</p>
+            <h3>Build it to work beyond my laptop.</h3>
+            <p>I use semantic HTML, CSS, JavaScript, React, and TypeScript to create reusable interfaces that stay consistent and are not a nightmare to update.</p>
           </article>
           <article>
             <p className="discipline-number">03 / REFINE</p>
-            <h3>Validate and refine the experience.</h3>
-            <p>I test layouts and interactions across screen sizes and browsers, then refine the details to improve usability, accessibility, and performance.</p>
+            <h3>Test it. Then test the “obvious” bit.</h3>
+            <p>I check layouts and interactions across screen sizes and browsers, then refine usability, accessibility, and performance. The obvious bit is usually where the bug is.</p>
           </article>
           <article>
             <p className="discipline-number">04 / BACKEND</p>
-            <h3>Develop a broader technical foundation.</h3>
-            <p>I’m expanding my backend practice with Node.js and Express, REST APIs, and MongoDB. This ongoing learning helps me understand how interfaces connect to the services and data behind a product.</p>
+            <h3>Learn what happens behind the screen.</h3>
+            <p>I’m expanding my backend practice with Node.js, Express, REST APIs, and MongoDB. There is, it turns out, quite a lot happening after you click the button.</p>
           </article>
           <article>
             <p className="discipline-number">05 / AI + EMERGING TECH</p>
-            <h3>Evaluate emerging tools responsibly.</h3>
-            <p>I explore how AI can support early research, reduce repetitive work, and broaden creative exploration. Its output remains subject to human review and refinement, guided by the project’s purpose and the needs of its audience.</p>
+            <h3>Use new tools. Keep a human in the loop.</h3>
+            <p>I explore how AI can support research, reduce repetitive work, and open up creative directions. Its output still gets questioned, reviewed, and edited by a person with the brief in front of them.</p>
           </article>
         </div>
       </section>
       <section className="about-tools" aria-labelledby="tools-heading">
         <p className="eyebrow"><span className="eyebrow-line" /> Tools and technologies</p>
-        <h2 id="tools-heading">A considered<br /><span className="serif-word">technical toolkit.</span></h2>
+        <h2 id="tools-heading">Tools of the trade<br /><span className="serif-word">(and occasional tabs).</span></h2>
         <ul className="tool-list">
           <li><span>DaVinci Resolve</span><span>Video editing</span></li>
           <li><span>Affinity</span><span>Graphic design</span></li>

@@ -1,12 +1,11 @@
 import { getRouteHref } from './pageConfig';
+import Wordmark from './Wordmark';
 
 function Footer() {
   return (
     <footer className="site-footer page-shell">
-      <a className="wordmark" href={getRouteHref('/')}>
-        sm<span className="wordmark-dot">.</span>
-      </a>
-      <p>Independent design and development · Johannesburg</p>
+      <Wordmark href={getRouteHref('/')} />
+      <p>Design and development · Johannesburg (with Wi-Fi)</p>
       <span>© 2026 Sisonke Miya</span>
     </footer>
   );

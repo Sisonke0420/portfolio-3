@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getRouteHref, type Page } from './pageConfig';
+import Wordmark from './Wordmark';
 
 type HeaderProps = {
   currentPage: Page;
@@ -22,9 +23,7 @@ function Header({ currentPage, pages }: HeaderProps) {
 
   return (
     <header className={menuOpen ? 'site-header menu-open' : 'site-header'}>
-      <a className="wordmark" href={getRouteHref('/')} aria-label="Sisonke Miya home">
-        sm<span className="wordmark-dot">.</span>
-      </a>
+      <Wordmark href={getRouteHref('/')} />
       <nav
         id="main-navigation"
         className={menuOpen ? 'main-nav is-open' : 'main-nav'}

@@ -16,7 +16,7 @@ function DesignApproachPage({ approach }: DesignApproachPageProps) {
       </a>
       <p className="eyebrow"><span className="eyebrow-line" /> Studio notes · {approach.project.category}</p>
       <header className="approach-heading">
-        <p className="approach-overline">Design rationale</p>
+        <p className="approach-overline">The thinking (yes, there was some)</p>
         <h1 className="page-title">{approach.title}</h1>
         <p className="large-copy">{approach.introduction}</p>
       </header>
@@ -50,7 +50,7 @@ function DesignApproachPage({ approach }: DesignApproachPageProps) {
       <section className="approach-explanation">
         <div>
           <p className="eyebrow"><span className="eyebrow-line" /> The thinking</p>
-          <h2>{approach.project.title}: design rationale.</h2>
+          <h2>{approach.project.title}: the idea behind it.</h2>
         </div>
         <p>{approach.approach}</p>
       </section>
@@ -66,15 +66,15 @@ function DesignApproachPage({ approach }: DesignApproachPageProps) {
       </section>
 
       <p className="approach-takeaway">
-        These principles are starting points, not fixed rules. Their value is
-        in helping each decision support the message, the medium, and the
-        people the work is for.
+        These principles are starting points, not sacred rules. Their job is
+        to help each decision serve the message, the medium, and the people
+        the work is for—not to win an argument with the brief.
       </p>
 
       <div className="project-detail-next">
         <span>Portfolio</span>
         <a href={getRouteHref('/work/')}>
-          View selected work<ArrowIcon diagonal />
+          Back to the other ideas<ArrowIcon diagonal />
         </a>
       </div>
     </article>

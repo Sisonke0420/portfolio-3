@@ -154,10 +154,10 @@ function App({ initialPath }: AppProps) {
           aria-hidden="true"
         >
           <div className="splash-content">
-            <p className="splash-kicker">Independent creative practice</p>
-            <span className="splash-wordmark">sm<span>.</span></span>
+            <p className="splash-kicker">A small pause before the pixels</p>
+            <span className="splash-wordmark">{'{seriously'}<span>.</span>{'creative}'}</span>
             <div className="splash-progress"><span /></div>
-            <p className="splash-caption">Thoughtful design for a changing world</p>
+            <p className="splash-caption">Good ideas. Fewer unnecessary things.</p>
           </div>
           <span className="splash-location">Johannesburg · South Africa</span>
         </div>

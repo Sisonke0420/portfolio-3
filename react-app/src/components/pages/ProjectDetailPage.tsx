@@ -50,7 +50,7 @@ function ProjectDetailPage({ project }: ProjectDetailPageProps) {
       <div className="project-detail-copy">
         <div>
           <p className="eyebrow"><span className="eyebrow-line" /> Project overview</p>
-          <h2>Project rationale and execution.</h2>
+          <h2>The thinking behind the pixels.</h2>
         </div>
         <div>
           <p>{project.summary}</p>

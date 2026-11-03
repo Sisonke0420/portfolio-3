@@ -5,8 +5,8 @@ function Callout() {
   return (
     <aside className="callout">
       <div>
-        <p className="eyebrow">For new projects and collaborations</p>
-        <h2>Let’s discuss your<br /><span className="serif-word">next project.</span></h2>
+        <p className="eyebrow">For promising ideas and useful conversations</p>
+        <h2>Have a project?<br /><span className="serif-word">Let’s untangle it.</span></h2>
       </div>
       <a className="round-link round-link-light" href={getRouteHref('/contact/')} aria-label="Discuss a project">
         <ArrowIcon diagonal />
