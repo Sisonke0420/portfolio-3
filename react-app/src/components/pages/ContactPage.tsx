@@ -57,10 +57,11 @@ function ContactPage() {
                 <option value="">Choose a service (optional)</option>
                 <option>Visual identity</option>
                 <option>Graphic or editorial design</option>
-                <option>Website or digital experience</option>
-                <option>Sound design / engineering</option>
-                <option>Video editing</option>
-                <option>Back-end development</option>
+                <option>Web application development</option>
+                <option>Mobile application development</option>
+                <option>Sound design and audio engineering</option>
+                <option>Video editing and post-production</option>
+                <option>Back-end application development</option>
                 <option>Something else</option>
               </select>
             </label>
@@ -129,7 +130,7 @@ function ContactPage() {
           <span className="contact-symbol">✳</span>
           <p className="eyebrow">The creative corner</p>
           <GlitchHeading as="h2">Making room<br />for good ideas</GlitchHeading>
-          <p>From visual identity and digital experiences to sound design, audio engineering, video editing, and back-end development, I’m open to creative projects with a clear purpose. If your idea crosses disciplines, that’s welcome too.</p>
+          <p>From visual identity and digital products to audio, post-production, and back-end engineering, I welcome projects with a clear purpose. For work that spans disciplines, I can shape a cohesive approach across the full experience.</p>
           <a href="mailto:0420nathi@gmail.com" className="button button-light">Send an enquiry <ArrowIcon /></a>
           <div className="contact-game-desktop">
             <SnakeGame />
