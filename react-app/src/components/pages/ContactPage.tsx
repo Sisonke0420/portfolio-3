@@ -1,16 +1,30 @@
-import type { FormEvent } from 'react';
+import { useState, type FormEvent } from 'react';
 import ArrowIcon from '../ArrowIcon';
+import { GlitchHeading } from '../GlitchHeading';
+import GlitchSlogan from '../GlitchSlogan';
+import SnakeGame from '../SnakeGame';
+import TapSparkGame from '../TapSparkGame';
 
 function ContactPage() {
+  const [customBudget, setCustomBudget] = useState(false);
+
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    const subject = `Project enquiry from ${formData.get('name')}`;
+    const service = formData.get('service');
+    const selectedBudget = formData.get('budget');
+    const budget = selectedBudget === 'custom'
+      ? formData.get('customBudget') ? `R${formData.get('customBudget')}` : 'Custom amount not specified'
+      : selectedBudget || 'Not specified';
+    const subject = `Project enquiry from ${formData.get('name')}${service ? ` — ${service}` : ''}`;
     const body = [
       `Name: ${formData.get('name')}`,
       `Email: ${formData.get('email')}`,
+      `Service: ${formData.get('service') || 'Not specified'}`,
+      `Timeline: ${formData.get('timeline') || 'Not specified'}`,
+      `Estimated budget: ${budget}`,
       '',
-      'Project details:',
+      'Project overview:',
       formData.get('project'),
     ].join('\n');
     // Compose the enquiry in the visitor's email app; this form does not send data to a server.
@@ -19,11 +33,12 @@ function ContactPage() {
 
   return (
     <section className="inner-page page-shell contact-page">
-      <p className="eyebrow"><span className="eyebrow-line" /> Start a conversation</p>
+      <p className="eyebrow"><span className="eyebrow-line" /> <GlitchSlogan messages={['Hello, interesting person', 'Well hello, good idea', 'A project is plotting something']} /></p>
       <div className="contact-content">
         <div>
-          <h1 className="page-title">Have a good idea?<br /><span className="serif-word">Let’s make it real.</span></h1>
+          <GlitchHeading as="h1" className="page-title">Have a good idea?<br /><span className="serif-word">Let’s give it a go.</span></GlitchHeading>
           <p className="large-copy">Have a design problem, a promising idea, or a strong opinion about type? Tell me the essentials and we can work out the scope, next steps, and whether that opinion is justified.</p>
+          <p className="contact-aside">A rough brief is welcome. So is a first draft. They can both arrive in their comfortable clothes.</p>
           <a className="contact-email" href="mailto:0420nathi@gmail.com">
             0420nathi@gmail.com <ArrowIcon diagonal />
           </a>
@@ -37,8 +52,63 @@ function ContactPage() {
               <input autoComplete="email" name="email" required type="email" />
             </label>
             <label>
-              What are you working on?
-              <textarea name="project" required rows={4} />
+              What kind of help do you need?
+              <select name="service" defaultValue="">
+                <option value="">Choose a service (optional)</option>
+                <option>Visual identity</option>
+                <option>Graphic or editorial design</option>
+                <option>Website or digital experience</option>
+                <option>Sound design / engineering</option>
+                <option>Video editing</option>
+                <option>Back-end development</option>
+                <option>Something else</option>
+              </select>
+            </label>
+            <div className="contact-form-row">
+              <label>
+                Ideal timing
+                <select name="timeline" defaultValue="">
+                  <option value="">Still figuring it out</option>
+                  <option>As soon as possible</option>
+                  <option>Within 1–3 months</option>
+                  <option>Within 3–6 months</option>
+                  <option>Flexible</option>
+                </select>
+              </label>
+              <label>
+                Estimated budget (ZAR)
+                <select
+                  name="budget"
+                  defaultValue=""
+                  onChange={(event) => setCustomBudget(event.target.value === 'custom')}
+                >
+                  <option value="">Still figuring it out</option>
+                  <option>Under R10,000</option>
+                  <option>R10,000–R25,000</option>
+                  <option>R25,000–R50,000</option>
+                  <option>R50,000–R100,000</option>
+                  <option>R100,000+</option>
+                  <option value="custom">I have a different amount</option>
+                </select>
+              </label>
+            </div>
+            {customBudget && (
+              <label>
+                Your budget (ZAR)
+                <input
+                  autoComplete="off"
+                  inputMode="decimal"
+                  min="0"
+                  name="customBudget"
+                  placeholder="e.g. 42,000"
+                  required
+                  type="number"
+                />
+              </label>
+            )}
+            <label>
+              Tell me about the project
+              <textarea name="project" required rows={5} placeholder="What are you making, who is it for, and what would a good result look like?" />
             </label>
             <button className="button button-dark" type="submit">
               Open the email <ArrowIcon />
@@ -48,18 +118,25 @@ function ContactPage() {
           <div className="contact-guidance">
             <p className="eyebrow"><span className="eyebrow-line" /> Helpful project details</p>
             <p>
-              Share the project’s goals, audience, scope, and any timing. If
-              the brief is still taking shape, send the rough version. Perfect
-              briefs are famously good at staying in drafts.
+              A useful starting point: what the project is, who it is for,
+              what you need made, and when you hope to launch. A budget range
+              helps shape a realistic scope. If some details are still
+              mysterious, “not sure yet” is a perfectly good answer.
             </p>
           </div>
         </div>
         <div className="contact-card">
           <span className="contact-symbol">✳</span>
-          <p className="eyebrow">Project availability</p>
-          <h2>Taking select<br />commissions</h2>
-          <p>Open to thoughtful collaborations across visual identity, graphic design, and digital experiences. Good questions welcome; “make it pop” may need follow-up.</p>
+          <p className="eyebrow">The creative corner</p>
+          <GlitchHeading as="h2">Making room<br />for good ideas</GlitchHeading>
+          <p>From visual identity and digital experiences to sound design, audio engineering, video editing, and back-end development, I’m open to creative projects with a clear purpose. If your idea crosses disciplines, that’s welcome too.</p>
           <a href="mailto:0420nathi@gmail.com" className="button button-light">Send an enquiry <ArrowIcon /></a>
+          <div className="contact-game-desktop">
+            <SnakeGame />
+          </div>
+          <div className="contact-game-mobile">
+            <TapSparkGame />
+          </div>
         </div>
       </div>
       <div className="contact-footer">

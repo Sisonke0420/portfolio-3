@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getRouteHref, type Page } from './pageConfig';
 import Wordmark from './Wordmark';
+import GlitchSlogan from './GlitchSlogan';
 
 type HeaderProps = {
   currentPage: Page;
@@ -43,7 +44,10 @@ function Header({ currentPage, pages }: HeaderProps) {
       </nav>
       <a className="header-availability" href={getRouteHref('/contact/')}>
         <span className="availability-dot" />
-        Available for select commissions
+        <GlitchSlogan
+          className="header-slogan"
+          messages={['Open for creative projects', 'Good ideas welcome', 'Ready for the next interesting thing']}
+        />
       </a>
       <button
         className="menu-toggle"

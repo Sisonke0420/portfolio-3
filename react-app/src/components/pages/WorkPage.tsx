@@ -1,12 +1,14 @@
 import Callout from '../Callout';
+import { GlitchHeading } from '../GlitchHeading';
+import GlitchSlogan from '../GlitchSlogan';
 import ProjectGrid from '../ProjectGrid';
 
 function WorkPage() {
   return (
     <section className="inner-page page-shell work-page">
-      <p className="eyebrow"><span className="eyebrow-line" /> Portfolio · 2022—2026</p>
+      <p className="eyebrow"><span className="eyebrow-line" /> <GlitchSlogan messages={['Portfolio · 2022—2026', 'Proof of curiosity · 2022—2026', 'A selection of solved puzzles']} /></p>
       <div className="work-heading">
-        <h1 className="page-title">Ideas, shaped<br />with <span className="serif-word">a point to make.</span></h1>
+        <GlitchHeading as="h1" className="page-title">Ideas, shaped<br />with <span className="serif-word">a point to make.</span></GlitchHeading>
         <p>Visual identity, editorial design, typography, and motion—with a clear point of view and a reason for being.</p>
       </div>
       <p className="work-introduction">

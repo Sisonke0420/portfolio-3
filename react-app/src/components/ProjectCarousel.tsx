@@ -50,9 +50,7 @@ function ProjectCarousel() {
     >
       <div className="project-carousel-viewport" aria-live="off">
         <article
-          className={activeApproachHref
-            ? 'project-card project-carousel-slide has-secret-approach'
-            : 'project-card project-carousel-slide'}
+          className={`project-card project-carousel-slide${activeApproachHref ? ' has-secret-approach' : ''}${noteOpen ? ' is-note-open' : ''}`}
           role="group"
           aria-roledescription="slide"
           aria-label={`${activeIndex + 1} of ${projects.length}`}
@@ -97,6 +95,9 @@ function ProjectCarousel() {
                 <span>View the design rationale</span><ArrowIcon diagonal />
               </a>
             )}
+            <span className="project-annotation" aria-label={`Studio annotation: ${activeProject.annotation}`}>
+              <span aria-hidden="true">↗</span> {activeProject.annotation}
+            </span>
           </div>
           <div className="project-meta">
             <div>

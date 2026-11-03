@@ -2,7 +2,7 @@ import { useState } from 'react';
 import ArrowIcon from './ArrowIcon';
 import ProjectImage from './ProjectImage';
 import { getDesignApproachHref } from './designApproaches';
-import projects, { getProjectHref, type Project } from './projects';
+import projects, { getProjectHref, projectMoods, type Project, type ProjectMood } from './projects';
 import { getRouteHref } from './pageConfig';
 
 type ProjectGridProps = {
@@ -55,6 +55,9 @@ function ProjectCard({ project }: { project: Project }) {
             <span>See the thinking behind it</span><ArrowIcon diagonal />
           </a>
         )}
+        <span className="project-annotation" aria-label={`Studio annotation: ${project.annotation}`}>
+          <span aria-hidden="true">↗</span> {project.annotation}
+        </span>
       </div>
       <div className="project-meta">
         <div>
@@ -90,13 +93,50 @@ function ProjectCard({ project }: { project: Project }) {
 }
 
 function ProjectGrid({ limit }: ProjectGridProps) {
-  const visibleProjects = limit ? projects.slice(0, limit) : projects;
+  const [activeMood, setActiveMood] = useState<ProjectMood | null>(null);
+  const moodProjects = activeMood
+    ? projects.filter((project) => project.moods.includes(activeMood))
+    : projects;
+  const visibleProjects = limit ? moodProjects.slice(0, limit) : moodProjects;
 
   return (
-    <div className="project-grid">
-      {visibleProjects.map((project) => (
-        <ProjectCard key={project.number} project={project} />
-      ))}
+    <div className="project-browser">
+      <div className="project-mood-browser" role="group" aria-label="Browse projects by mood">
+        <div>
+          <p className="eyebrow">Pick a feeling</p>
+          <span className="project-mood-hint">The portfolio can take it.</span>
+        </div>
+        <div className="project-mood-filters">
+          <button
+            type="button"
+            className={activeMood === null ? 'project-mood-filter active' : 'project-mood-filter'}
+            aria-pressed={activeMood === null}
+            onClick={() => setActiveMood(null)}
+          >
+            All the things
+          </button>
+          {projectMoods.map((mood) => (
+            <button
+              type="button"
+              className={activeMood === mood.id ? 'project-mood-filter active' : 'project-mood-filter'}
+              aria-pressed={activeMood === mood.id}
+              key={mood.id}
+              onClick={() => setActiveMood(mood.id)}
+              title={mood.prompt}
+            >
+              {mood.label}
+            </button>
+          ))}
+        </div>
+        <p className="project-mood-count" aria-live="polite">
+          {visibleProjects.length} {visibleProjects.length === 1 ? 'project' : 'projects'} in this little pile
+        </p>
+      </div>
+      <div className="project-grid" key={activeMood ?? 'all'}>
+        {visibleProjects.map((project) => (
+          <ProjectCard key={project.number} project={project} />
+        ))}
+      </div>
     </div>
   );
 }

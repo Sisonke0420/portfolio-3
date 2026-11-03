@@ -1,4 +1,5 @@
 import ArrowIcon from '../ArrowIcon';
+import { GlitchHeading } from '../GlitchHeading';
 import ProjectImage from '../ProjectImage';
 import { getRouteHref } from '../pageConfig';
 import { getProjectHref } from '../projects';
@@ -17,7 +18,7 @@ function DesignApproachPage({ approach }: DesignApproachPageProps) {
       <p className="eyebrow"><span className="eyebrow-line" /> Studio notes · {approach.project.category}</p>
       <header className="approach-heading">
         <p className="approach-overline">The thinking (yes, there was some)</p>
-        <h1 className="page-title">{approach.title}</h1>
+        <GlitchHeading as="h1" className="page-title">{approach.title}</GlitchHeading>
         <p className="large-copy">{approach.introduction}</p>
       </header>
 
@@ -50,7 +51,7 @@ function DesignApproachPage({ approach }: DesignApproachPageProps) {
       <section className="approach-explanation">
         <div>
           <p className="eyebrow"><span className="eyebrow-line" /> The thinking</p>
-          <h2>{approach.project.title}: the idea behind it.</h2>
+          <GlitchHeading as="h2">{approach.project.title}: the idea behind it.</GlitchHeading>
         </div>
         <p>{approach.approach}</p>
       </section>

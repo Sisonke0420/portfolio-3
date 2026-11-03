@@ -1,4 +1,5 @@
 import ArrowIcon from '../ArrowIcon';
+import { GlitchHeading } from '../GlitchHeading';
 import ProjectImage from '../ProjectImage';
 import { getRouteHref } from '../pageConfig';
 import projects, { getProjectHref, type Project } from '../projects';
@@ -19,7 +20,7 @@ function ProjectDetailPage({ project }: ProjectDetailPageProps) {
       <p className="eyebrow"><span className="eyebrow-line" /> Case study · {project.number}</p>
       <div className="project-detail-heading">
         <div>
-          <h1 className="page-title">{project.title}</h1>
+          <GlitchHeading as="h1" className="page-title">{project.title}</GlitchHeading>
           <p className="large-copy">{project.category}</p>
         </div>
         <a className="button button-dark" href={getRouteHref('/contact/')}>
@@ -46,11 +47,12 @@ function ProjectDetailPage({ project }: ProjectDetailPageProps) {
             contained={project.containImage}
           />
         ) : null}
+        <p className="project-detail-annotation"><span aria-hidden="true">↗</span> {project.annotation}</p>
       </div>
       <div className="project-detail-copy">
         <div>
           <p className="eyebrow"><span className="eyebrow-line" /> Project overview</p>
-          <h2>The thinking behind the pixels.</h2>
+          <GlitchHeading as="h2">The thinking behind the pixels.</GlitchHeading>
         </div>
         <div>
           <p>{project.summary}</p>

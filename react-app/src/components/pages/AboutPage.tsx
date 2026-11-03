@@ -1,13 +1,15 @@
 import Callout from '../Callout';
+import { GlitchHeading } from '../GlitchHeading';
+import GlitchSlogan from '../GlitchSlogan';
 import portraitImage from '../../assets/Images/Image of me.jpg';
 
 function AboutPage() {
   return (
     <section className="inner-page page-shell about-page">
-      <p className="eyebrow"><span className="eyebrow-line" /> About the practice</p>
+      <p className="eyebrow"><span className="eyebrow-line" /> <GlitchSlogan messages={['About the practice', 'A little method, some madness', 'Curiosity, with a checklist']} /></p>
       <div className="about-layout">
         <div>
-          <h1 className="page-title">Curious by nature.<br /><span className="serif-word">Fussy about details.</span></h1>
+          <GlitchHeading as="h1" className="page-title">Curious by nature.<br /><span className="serif-word">Fussy about details.</span></GlitchHeading>
           <p className="large-copy">
             I’m Sisonke Miya, a graphic designer and developer
             based in Johannesburg. I bring visual storytelling and digital
@@ -28,12 +30,12 @@ function AboutPage() {
       </div>
       <div className="about-details">
         <div>
-          <h2>Approach</h2>
+          <GlitchHeading as="h2">Approach</GlitchHeading>
           <p>I work with people and teams to clarify the message, audience, and intended outcome. Then it’s research, concepts, visual design, and implementation—with clarity, accessibility, and craft in the room at every stage.</p>
           <p>From typography to interface structure, each choice should earn its place. The aim: work that feels distinctive, does its job, and doesn’t need a user manual.</p>
         </div>
         <div>
-          <h2>Capabilities</h2>
+          <GlitchHeading as="h2">Capabilities</GlitchHeading>
           <ul className="skill-list">
             <li>Brand strategy and visual identity <span>01</span></li>
             <li>Typography and editorial design <span>02</span></li>
@@ -44,7 +46,7 @@ function AboutPage() {
       </div>
       <section className="about-collaboration">
         <p className="eyebrow"><span className="eyebrow-line" /> A considered collaboration</p>
-        <h2>Listen carefully.<br /><span className="serif-word">Then make it make sense.</span></h2>
+        <GlitchHeading as="h2">Listen carefully.<br /><span className="serif-word">Then make it make sense.</span></GlitchHeading>
         <p>
           A good collaboration starts with clear communication and shared
           objectives. I ask the useful questions, share work at the right
@@ -58,7 +60,7 @@ function AboutPage() {
       </section>
       <section className="about-disciplines" aria-labelledby="disciplines-heading">
         <p className="eyebrow"><span className="eyebrow-line" /> Areas of practice</p>
-        <h2 id="disciplines-heading">Make it distinctive.<br /><span className="serif-word">Make it work.</span></h2>
+        <GlitchHeading as="h2" id="disciplines-heading">Make it distinctive.<br /><span className="serif-word">Make it work.</span></GlitchHeading>
         <div className="discipline-grid">
           <article className="discipline-card">
             <p className="discipline-number">01 / GRAPHIC DESIGN</p>
@@ -87,7 +89,7 @@ function AboutPage() {
       {/* Keep process and tools separate from the development skills listed above. */}
       <section className="developer-practice" aria-labelledby="developer-practice-heading">
         <p className="eyebrow"><span className="eyebrow-line" /> Development practice</p>
-        <h2 id="developer-practice-heading">Thoughtful development<br /><span className="serif-word">minus the guesswork.</span></h2>
+        <GlitchHeading as="h2" id="developer-practice-heading">Thoughtful development<br /><span className="serif-word">minus the guesswork.</span></GlitchHeading>
         <p className="developer-practice-intro">
           A polished website needs more than a good first impression. It should
           work reliably, adapt to real screens, and make sense to the next
@@ -124,7 +126,7 @@ function AboutPage() {
       </section>
       <section className="about-tools" aria-labelledby="tools-heading">
         <p className="eyebrow"><span className="eyebrow-line" /> Tools and technologies</p>
-        <h2 id="tools-heading">Tools of the trade<br /><span className="serif-word">(and occasional tabs).</span></h2>
+        <GlitchHeading as="h2" id="tools-heading">Tools of the trade<br /><span className="serif-word">(and occasional tabs).</span></GlitchHeading>
         <ul className="tool-list">
           <li><span>DaVinci Resolve</span><span>Video editing</span></li>
           <li><span>Affinity</span><span>Graphic design</span></li>

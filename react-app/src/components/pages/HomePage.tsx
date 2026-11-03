@@ -1,23 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import ArrowIcon from '../ArrowIcon';
+import { GlitchHeading } from '../GlitchHeading';
+import GlitchSlogan from '../GlitchSlogan';
 import ProjectCarousel from '../ProjectCarousel';
 import { getRouteHref } from '../pageConfig';
 import heroProjectImage from '../../assets/Images/8fc0be87-b9c6-4a60-8965-7c83bd61072a.webp';
 
-const microcopy = [
-  'Available worldwide (yes, even your time zone).',
-  'Currently making the internet slightly tidier.',
-  'Good ideas welcome. Vague briefs can be rescued.',
-  'Based in Johannesburg. Mentally rearranging type.',
-];
-
-const briefPrompts = [
-  'Make a bakery identity for people who think sourdough has a personality.',
-  'Design a calm app for a very uncalm houseplant.',
-  'Give a tiny museum a brand too big for its gift shop.',
-  'Create a bookshop identity for people who buy books faster than they read them.',
-  'Make a neighborhood café feel like the best-kept secret everyone knows.',
-];
+const briefAudiences = ['curious first-timers', 'people with very full calendars', 'the happily hard-to-impress'];
+const briefMoods = ['warm and a little unexpected', 'bold enough to be remembered', 'calm, clear, and quietly confident'];
+const briefTwists = ['with a tiny hint of mischief', 'without adding another app', 'that still works on a very small screen'];
 
 function FeaturedWork() {
   return (
@@ -25,7 +16,7 @@ function FeaturedWork() {
       <div className="section-heading">
         <div>
           <p className="eyebrow"><span className="eyebrow-line" /> Selected projects</p>
-          <h2>Selected work<br /><span className="serif-word">with intent (and snacks).</span></h2>
+          <GlitchHeading as="h2">Selected work<br /><span className="serif-word">with intent (and snacks).</span></GlitchHeading>
         </div>
         <a className="text-link" href={getRouteHref('/work/')}>View all projects <ArrowIcon /></a>
       </div>
@@ -35,34 +26,21 @@ function FeaturedWork() {
 }
 
 function HomePage() {
-  const [microcopyIndex, setMicrocopyIndex] = useState(0);
-  const [briefIndex, setBriefIndex] = useState(0);
-
-  useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const timer = window.setInterval(() => {
-      setMicrocopyIndex((index) => (index + 1) % microcopy.length);
-    }, 8000);
-    return () => window.clearInterval(timer);
-  }, []);
-
-  function shuffleBrief() {
-    setBriefIndex((currentIndex) => {
-      const nextIndex = Math.floor(Math.random() * briefPrompts.length);
-      return nextIndex === currentIndex ? (nextIndex + 1) % briefPrompts.length : nextIndex;
-    });
-  }
+  const [audience, setAudience] = useState(briefAudiences[0]);
+  const [mood, setMood] = useState(briefMoods[0]);
+  const [twist, setTwist] = useState(briefTwists[0]);
+  const [creativeDirection, setCreativeDirection] = useState('');
 
   return (
     <div className="home-page">
       <section className="hero page-shell">
         <div className="hero-copy">
           <p className="eyebrow"><span className="eyebrow-line" /> Designer &amp; developer</p>
-          <h1>
+          <GlitchHeading as="h1">
             Thoughtful<br />
             design for a<br />
             <span className="accent-word">changing</span> world<span className="accent-period">.</span>
-          </h1>
+          </GlitchHeading>
           <p className="hero-description">
             I help ambitious people turn big ideas into clear identities and
             digital experiences. Considered art direction, accessible code, and
@@ -78,7 +56,16 @@ function HomePage() {
             <span className="note-spark">✳</span>
             <span>Johannesburg, South Africa<br />Available worldwide</span>
           </div>
-          <p className="hero-microcopy">{microcopy[microcopyIndex]}</p>
+          <GlitchSlogan
+            className="hero-microcopy"
+            messages={[
+              'Available worldwide (yes, even your time zone).',
+              'Currently making the internet slightly tidier.',
+              'Good ideas welcome. Vague briefs can be rescued.',
+              'Based in Johannesburg. Mentally rearranging type.',
+            ]}
+            interval={7000}
+          />
         </div>
         <figure className="hero-artwork">
           <img
@@ -113,7 +100,7 @@ function HomePage() {
       <section className="home-practice page-shell">
         <div className="home-practice-heading">
           <p className="eyebrow"><span className="eyebrow-line" /> A process, not a series of guesses</p>
-          <h2>From the first sketch<br /><span className="serif-word">to the last tiny detail.</span></h2>
+          <GlitchHeading as="h2">From the first sketch<br /><span className="serif-word">to the last tiny detail.</span></GlitchHeading>
           <p>
             Good work takes clear thinking and a healthy respect for the details.
             I shape the concept, build its visual language, and see it through
@@ -151,7 +138,7 @@ function HomePage() {
       <section className="home-belief">
         <div className="page-shell home-belief-inner">
           <p className="eyebrow"><span className="eyebrow-line" /> Pretty is nice. Useful is nicer.</p>
-          <h2>Make it memorable.<br /><span className="serif-word">Make it make sense.</span></h2>
+          <GlitchHeading as="h2">Make it memorable.<br /><span className="serif-word">Make it make sense.</span></GlitchHeading>
           <div className="home-belief-copy">
             <p>
               Design should do more than look good in a screenshot. It should
@@ -171,13 +158,40 @@ function HomePage() {
       <section className="brief-playground page-shell" aria-labelledby="brief-playground-heading">
         <p className="eyebrow"><span className="eyebrow-line" /> A tiny creative detour</p>
         <div className="brief-playground-content">
-          <div>
-            <h2 id="brief-playground-heading">Need a brief?<br /><span className="serif-word">Here’s a weird one.</span></h2>
-            <p className="brief-prompt" aria-live="polite">{briefPrompts[briefIndex]}</p>
+          <div className="brief-builder-intro">
+            <GlitchHeading as="h2" id="brief-playground-heading">A brief, but make it<br /><span className="serif-word">a little more you.</span></GlitchHeading>
+            <p className="brief-prompt">Three tiny choices. One suspiciously usable starting point.</p>
           </div>
-          <button className="button button-dark brief-shuffle" type="button" onClick={shuffleBrief}>
-            Spin the brief <span aria-hidden="true">↻</span>
-          </button>
+          <form
+            className="brief-builder"
+            onSubmit={(event) => {
+              event.preventDefault();
+              setCreativeDirection(`Create something ${mood} for ${audience}, ${twist}.`);
+            }}
+          >
+            <label>
+              Who is it for?
+              <select value={audience} onChange={(event) => setAudience(event.target.value)}>
+                {briefAudiences.map((option) => <option key={option}>{option}</option>)}
+              </select>
+            </label>
+            <label>
+              What should it feel like?
+              <select value={mood} onChange={(event) => setMood(event.target.value)}>
+                {briefMoods.map((option) => <option key={option}>{option}</option>)}
+              </select>
+            </label>
+            <label>
+              Add a small constraint
+              <select value={twist} onChange={(event) => setTwist(event.target.value)}>
+                {briefTwists.map((option) => <option key={option}>{option}</option>)}
+              </select>
+            </label>
+            <button className="button button-dark brief-shuffle" type="submit">
+              Find a direction <span aria-hidden="true">↗</span>
+            </button>
+            <p className="brief-generated-direction" aria-live="polite">{creativeDirection}</p>
+          </form>
         </div>
       </section>
     </div>

@@ -8,6 +8,7 @@ type CustomCursorProps = {
 
 function CustomCursor({ darkMode }: CustomCursorProps) {
   const cursorRef = useRef<HTMLSpanElement>(null);
+  const labelRef = useRef<HTMLSpanElement>(null);
   const tailRefs = useRef<Array<HTMLSpanElement | null>>([]);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -50,9 +51,21 @@ function CustomCursor({ darkMode }: CustomCursorProps) {
       pointerX = event.clientX;
       pointerY = event.clientY;
       const hoveredElement = document.elementFromPoint(pointerX, pointerY);
+      const control = hoveredElement?.closest('a, button, input, textarea, select, [role="button"]');
+      const cursorLabel = control?.matches('.project-note-toggle') ? 'note'
+        : control?.matches('.carousel-arrow, .project-arrow') ? 'next'
+          : control?.matches('.project-image-trigger') ? 'zoom'
+            : control?.matches('.sound-toggle') ? 'sound'
+              : control?.matches('.project-mood-filter') ? 'sort'
+                : control?.tagName === 'A' ? 'view'
+                  : control ? 'go'
+                    : hoveredElement?.closest('.project-card, .about-card, .discipline-card, .tool-list li, .contact-card, .approach-principle')
+                      ? 'peek'
+                      : 'go';
+      if (labelRef.current) labelRef.current.textContent = cursorLabel;
       document.body.classList.toggle(
         'cursor-over-interactive',
-        Boolean(hoveredElement?.closest('a, button, input, textarea, select, [role="button"]')),
+        Boolean(control),
       );
       document.body.classList.toggle('cursor-over-card', Boolean(hoveredElement?.closest([
         '.project-card',
@@ -118,7 +131,7 @@ function CustomCursor({ darkMode }: CustomCursorProps) {
           }}
         />
       ))}
-      <span className="custom-cursor-head" ref={cursorRef}><span className="custom-cursor-label">go</span></span>
+      <span className="custom-cursor-head" ref={cursorRef}><span className="custom-cursor-label" ref={labelRef}>go</span></span>
     </span>
   );
 }

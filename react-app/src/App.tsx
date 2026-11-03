@@ -8,6 +8,8 @@ import HomePage from './components/pages/HomePage';
 import ProjectDetailPage from './components/pages/ProjectDetailPage';
 import WorkPage from './components/pages/WorkPage';
 import CustomCursor from './components/CustomCursor';
+import { GlitchHeadingProvider } from './components/GlitchHeading';
+import { InteractionSoundsProvider } from './components/InteractionSounds';
 import { pages, type Page } from './components/pageConfig';
 import projects, { getProjectSlug } from './components/projects';
 import { designApproaches } from './components/designApproaches';
@@ -162,28 +164,32 @@ function App({ initialPath }: AppProps) {
           <span className="splash-location">Johannesburg · South Africa</span>
         </div>
       )}
-      <div className={darkMode ? 'site theme-dark' : 'site'}>
-        <Header
-          currentPage={currentPage}
-          pages={pages}
-        />
-        <div className="header-spacer" aria-hidden="true" />
-        <main id="main-content" key={currentPage} tabIndex={-1}>
-          {currentPage === 'approach' && selectedApproach ? (
-            <DesignApproachPage approach={selectedApproach} />
-          ) : selectedProject ? (
-            <ProjectDetailPage project={selectedProject} />
-          ) : (
-            <>
-              {currentPage === 'home' && <HomePage />}
-              {currentPage === 'about' && <AboutPage />}
-              {currentPage === 'work' && <WorkPage />}
-              {currentPage === 'contact' && <ContactPage />}
-            </>
-          )}
-        </main>
-        <Footer />
-      </div>
+      <InteractionSoundsProvider>
+        <div className={darkMode ? 'site theme-dark' : 'site'}>
+          <Header
+            currentPage={currentPage}
+            pages={pages}
+          />
+          <div className="header-spacer" aria-hidden="true" />
+          <GlitchHeadingProvider>
+            <main id="main-content" key={currentPage} tabIndex={-1}>
+              {currentPage === 'approach' && selectedApproach ? (
+                <DesignApproachPage approach={selectedApproach} />
+              ) : selectedProject ? (
+                <ProjectDetailPage project={selectedProject} />
+              ) : (
+                <>
+                  {currentPage === 'home' && <HomePage />}
+                  {currentPage === 'about' && <AboutPage />}
+                  {currentPage === 'work' && <WorkPage />}
+                  {currentPage === 'contact' && <ContactPage />}
+                </>
+              )}
+            </main>
+          </GlitchHeadingProvider>
+          <Footer />
+        </div>
+      </InteractionSoundsProvider>
       <CustomCursor darkMode={darkMode} />
     </>
   );
