@@ -30,6 +30,7 @@ function Header({ currentPage, pages }: HeaderProps) {
         className={menuOpen ? 'main-nav is-open' : 'main-nav'}
         aria-label="Main navigation"
       >
+        <p className="nav-signature">{'{seriously.creative}'}</p>
         {pages.map((page) => (
           <a
             key={page.id}

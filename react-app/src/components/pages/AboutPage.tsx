@@ -155,7 +155,7 @@ function AboutPage() {
           <li><span>DaVinci Resolve</span><span>Video editing and post-production</span></li>
           <li><span>FL Studio</span><span>Beat-making and music production</span></li>
           <li><span>Ableton Live</span><span>Music production and live performance</span></li>
-          <li><span>Cubase</span><span>Multitrack and MIDI production</span></li>
+          <li><span>Cubase</span><span>Multitrack, MIDI, and film scoring</span></li>
           <li><span>Reaper + Audacity</span><span>Audio recording and editing</span></li>
           <li><span>Affinity</span><span>Layout and graphic design</span></li>
           <li><span>Canva</span><span>Visual content production</span></li>
