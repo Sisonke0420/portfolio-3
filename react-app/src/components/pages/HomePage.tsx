@@ -137,14 +137,6 @@ function HomePage() {
         <div className="hero-index"><span>01</span><span className="index-rule" /><span>04</span></div>
       </section>
 
-      <section className="intro-strip">
-        <div className="page-shell intro-inner">
-          <p>Good work begins with <em>asking better questions.</em></p>
-          <a href={getRouteHref('/about/')} className="round-link" aria-label="Learn about Sisonke Miya’s design approach">
-            <ArrowIcon diagonal />
-          </a>
-        </div>
-      </section>
       <section className="home-practice page-shell">
         <div className="home-practice-heading">
           <p className="eyebrow"><span className="eyebrow-line" /> A clear process, from idea to execution</p>

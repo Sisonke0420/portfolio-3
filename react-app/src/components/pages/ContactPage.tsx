@@ -37,7 +37,7 @@ function ContactPage() {
       <div className="contact-content">
         <div>
           <GlitchHeading as="h1" className="page-title">Have a good idea?<br /><span className="serif-word">Let’s give it a go.</span></GlitchHeading>
-          <p className="large-copy">Have a project in visual identity and editorial design, web and mobile products, audio and moving image, or application systems? Share the essentials and we can clarify the scope, next steps, and what a good result should do.</p>
+          <p className="large-copy">For visual identity, editorial design, web or mobile, audio, moving image, or application systems, tell me what you’re making and what a good result looks like.</p>
           <p className="contact-aside">A rough brief is welcome. So is a first draft. They can both arrive in their comfortable clothes.</p>
           <a className="contact-email" href="mailto:0420nathi@gmail.com">
             0420nathi@gmail.com <ArrowIcon diagonal />
@@ -123,19 +123,14 @@ function ContactPage() {
             </p>
           </div>
         </div>
-        <div className="contact-card">
-          <span className="contact-symbol">✳</span>
-          <p className="eyebrow">The creative corner</p>
-          <GlitchHeading as="h2">Making room<br />for good ideas</GlitchHeading>
-          <p>I bring visual identity and editorial design, web and mobile products, audio and moving image, and application systems together around one clear brief.</p>
-          <a href="mailto:0420nathi@gmail.com" className="button button-light">Send an enquiry <ArrowIcon /></a>
+        <aside className="contact-card" aria-label="A small distraction">
           <div className="contact-game-desktop">
             <SnakeGame />
           </div>
           <div className="contact-game-mobile">
             <TapSparkGame />
           </div>
-        </div>
+        </aside>
       </div>
       <div className="contact-footer">
         <span>Johannesburg, GP</span>

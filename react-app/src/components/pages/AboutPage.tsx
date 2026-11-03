@@ -31,8 +31,7 @@ function AboutPage() {
       <div className="about-details">
         <div>
           <GlitchHeading as="h2">Approach</GlitchHeading>
-          <p>I work with people and teams to clarify the message, audience, and intended outcome before choosing a visual direction. From research and early concepts through design and implementation, each stage is shaped by clear communication, accessibility, and attention to craft.</p>
-          <p>From typography and image-making to interface structure and interaction, every choice should support the idea and make the experience easier to understand. The aim is work that feels distinctive, performs its job across real contexts, and doesn’t need a user manual.</p>
+          <p>I clarify the audience and goal first, then choose the right mix of design and technology to make the idea clear, useful, and distinctive.</p>
         </div>
         <div>
           <GlitchHeading as="h2">Capabilities</GlitchHeading>
@@ -48,16 +47,9 @@ function AboutPage() {
         <p className="eyebrow"><span className="eyebrow-line" /> A considered collaboration</p>
         <GlitchHeading as="h2">Listen carefully.<br /><span className="serif-word">Then make it make sense.</span></GlitchHeading>
         <p>
-          A good collaboration starts with clear communication and shared
-          objectives. I ask focused questions, agree on what success looks
-          like, and share work at useful decision points—so feedback has
-          context and design choices have a reason beyond “it looked cool at
-          1 a.m.”
-        </p>
-        <p>
-          Ideas are presented, tested, and refined as the work develops.
-          There’s room to experiment, but clarity, usability, accessibility,
-          and the actual brief still get the final say.
+          You’ll see work at key decision points, with context for each choice
+          and a clear chance to give feedback. We refine together against the
+          brief—room to experiment, no guessing what happens next.
         </p>
       </section>
       <section className="about-disciplines" aria-labelledby="disciplines-heading">
