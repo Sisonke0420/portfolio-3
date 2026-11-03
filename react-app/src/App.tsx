@@ -9,7 +9,7 @@ import ProjectDetailPage from './components/pages/ProjectDetailPage';
 import WorkPage from './components/pages/WorkPage';
 import CustomCursor from './components/CustomCursor';
 import { GlitchHeadingProvider } from './components/GlitchHeading';
-import { InteractionSoundsProvider } from './components/InteractionSounds';
+import { InteractionSoundsProvider, SoundToggle } from './components/InteractionSounds';
 import { pages, type Page } from './components/pageConfig';
 import projects, { getProjectSlug } from './components/projects';
 import { designApproaches } from './components/designApproaches';
@@ -149,11 +149,12 @@ function App({ initialPath }: AppProps) {
   }, []);
 
   return (
-    <>
+    <InteractionSoundsProvider>
       {splashState !== 'hidden' && (
         <div
           className={`splash-screen${darkMode ? ' theme-dark' : ''}${splashState === 'exiting' ? ' is-exiting' : ''}`}
-          aria-hidden="true"
+          role="region"
+          aria-label="Portfolio introduction"
         >
           <div className="splash-content">
             <p className="splash-kicker">A small pause before the pixels</p>
@@ -162,36 +163,35 @@ function App({ initialPath }: AppProps) {
             <p className="splash-caption">Good ideas. Fewer unnecessary things.</p>
           </div>
           <span className="splash-location">Johannesburg · South Africa</span>
+          <SoundToggle splash enableEffect="splash" />
         </div>
       )}
-      <InteractionSoundsProvider>
-        <div className={darkMode ? 'site theme-dark' : 'site'}>
-          <Header
-            currentPage={currentPage}
-            pages={pages}
-          />
-          <div className="header-spacer" aria-hidden="true" />
-          <GlitchHeadingProvider>
-            <main id="main-content" key={currentPage} tabIndex={-1}>
-              {currentPage === 'approach' && selectedApproach ? (
-                <DesignApproachPage approach={selectedApproach} />
-              ) : selectedProject ? (
-                <ProjectDetailPage project={selectedProject} />
-              ) : (
-                <>
-                  {currentPage === 'home' && <HomePage />}
-                  {currentPage === 'about' && <AboutPage />}
-                  {currentPage === 'work' && <WorkPage />}
-                  {currentPage === 'contact' && <ContactPage />}
-                </>
-              )}
-            </main>
-          </GlitchHeadingProvider>
-          <Footer />
-        </div>
-      </InteractionSoundsProvider>
+      <div className={darkMode ? 'site theme-dark' : 'site'}>
+        <Header
+          currentPage={currentPage}
+          pages={pages}
+        />
+        <div className="header-spacer" aria-hidden="true" />
+        <GlitchHeadingProvider>
+          <main id="main-content" key={currentPage} tabIndex={-1}>
+            {currentPage === 'approach' && selectedApproach ? (
+              <DesignApproachPage approach={selectedApproach} />
+            ) : selectedProject ? (
+              <ProjectDetailPage project={selectedProject} />
+            ) : (
+              <>
+                {currentPage === 'home' && <HomePage />}
+                {currentPage === 'about' && <AboutPage />}
+                {currentPage === 'work' && <WorkPage />}
+                {currentPage === 'contact' && <ContactPage />}
+              </>
+            )}
+          </main>
+        </GlitchHeadingProvider>
+        <Footer />
+      </div>
       <CustomCursor darkMode={darkMode} />
-    </>
+    </InteractionSoundsProvider>
   );
 }
 

@@ -6,9 +6,21 @@ import ProjectCarousel from '../ProjectCarousel';
 import { getRouteHref } from '../pageConfig';
 import heroProjectImage from '../../assets/Images/8fc0be87-b9c6-4a60-8965-7c83bd61072a.webp';
 
-const briefAudiences = ['curious first-timers', 'people with very full calendars', 'the happily hard-to-impress'];
-const briefMoods = ['warm and a little unexpected', 'bold enough to be remembered', 'calm, clear, and quietly confident'];
-const briefTwists = ['with a tiny hint of mischief', 'without adding another app', 'that still works on a very small screen'];
+const briefProjects = ['a neighborhood café', 'a tiny culture festival', 'a clever new app', 'a very ambitious bookshop', 'a community art space'];
+const briefAudiences = ['curious first-timers', 'people with very full calendars', 'the happily hard-to-impress', 'locals who know all the shortcuts'];
+const briefMoods = ['warm and a little unexpected', 'bold enough to be remembered', 'calm, clear, and quietly confident', 'like a Sunday with absolutely no emails'];
+const briefTwists = ['with a tiny hint of mischief', 'without adding another app', 'that still works on a very small screen', 'using one color less than expected'];
+const briefFirstMoves = [
+  'Start with one confident typeface and let it do some heavy lifting.',
+  'Find the small detail people will want to point out to a friend.',
+  'Make the most useful action the easiest thing to find.',
+  'Give the visual system one rule worth breaking (occasionally).',
+];
+
+type CreativeDirection = {
+  prompt: string;
+  firstMove: string;
+};
 
 function FeaturedWork() {
   return (
@@ -26,10 +38,46 @@ function FeaturedWork() {
 }
 
 function HomePage() {
+  const [project, setProject] = useState(briefProjects[0]);
   const [audience, setAudience] = useState(briefAudiences[0]);
   const [mood, setMood] = useState(briefMoods[0]);
   const [twist, setTwist] = useState(briefTwists[0]);
-  const [creativeDirection, setCreativeDirection] = useState('');
+  const [creativeDirection, setCreativeDirection] = useState<CreativeDirection | null>(null);
+  const [copyStatus, setCopyStatus] = useState('');
+
+  function createDirection() {
+    setCreativeDirection({
+      prompt: `Give ${project}, made for ${audience}, a look and feel that is ${mood} — and make it work ${twist}.`,
+      firstMove: briefFirstMoves[Math.floor(Math.random() * briefFirstMoves.length)],
+    });
+    setCopyStatus('');
+  }
+
+  function surpriseMe() {
+    const surpriseProject = briefProjects[Math.floor(Math.random() * briefProjects.length)];
+    const surpriseAudience = briefAudiences[Math.floor(Math.random() * briefAudiences.length)];
+    const surpriseMood = briefMoods[Math.floor(Math.random() * briefMoods.length)];
+    const surpriseTwist = briefTwists[Math.floor(Math.random() * briefTwists.length)];
+    setProject(surpriseProject);
+    setAudience(surpriseAudience);
+    setMood(surpriseMood);
+    setTwist(surpriseTwist);
+    setCreativeDirection({
+      prompt: `Give ${surpriseProject}, made for ${surpriseAudience}, a look and feel that is ${surpriseMood} — and make it work ${surpriseTwist}.`,
+      firstMove: briefFirstMoves[Math.floor(Math.random() * briefFirstMoves.length)],
+    });
+    setCopyStatus('');
+  }
+
+  async function copyDirection() {
+    if (!creativeDirection) return;
+    try {
+      await navigator.clipboard.writeText(`${creativeDirection.prompt}\nFirst move: ${creativeDirection.firstMove}`);
+      setCopyStatus('Copied. Your notes app feels seen.');
+    } catch {
+      setCopyStatus('Could not copy automatically. You can select the direction and copy it manually.');
+    }
+  }
 
   return (
     <div className="home-page">
@@ -160,15 +208,22 @@ function HomePage() {
         <div className="brief-playground-content">
           <div className="brief-builder-intro">
             <GlitchHeading as="h2" id="brief-playground-heading">A brief, but make it<br /><span className="serif-word">a little more you.</span></GlitchHeading>
-            <p className="brief-prompt">Three tiny choices. One suspiciously usable starting point.</p>
+            <p className="brief-prompt">Pick a project, set the mood, add one unreasonable constraint. Suddenly, that’s a brief.</p>
+            <p className="brief-counter"><span>01</span> Pick your ingredients <span>02</span> Get a direction <span>03</span> Pretend it was the plan all along</p>
           </div>
           <form
             className="brief-builder"
             onSubmit={(event) => {
               event.preventDefault();
-              setCreativeDirection(`Create something ${mood} for ${audience}, ${twist}.`);
+              createDirection();
             }}
           >
+            <label>
+              What are we making?
+              <select value={project} onChange={(event) => setProject(event.target.value)}>
+                {briefProjects.map((option) => <option key={option}>{option}</option>)}
+              </select>
+            </label>
             <label>
               Who is it for?
               <select value={audience} onChange={(event) => setAudience(event.target.value)}>
@@ -188,11 +243,27 @@ function HomePage() {
               </select>
             </label>
             <button className="button button-dark brief-shuffle" type="submit">
-              Find a direction <span aria-hidden="true">↗</span>
+              Build my brief <span aria-hidden="true">↗</span>
             </button>
-            <p className="brief-generated-direction" aria-live="polite">{creativeDirection}</p>
+            <button className="brief-surprise" type="button" onClick={surpriseMe}>
+              Surprise me with everything <span aria-hidden="true">↻</span>
+            </button>
           </form>
         </div>
+        {creativeDirection && (
+          <div className="brief-result" aria-live="polite">
+            <p className="brief-result-label"><span className="eyebrow-line" /> Your suspiciously good starting point</p>
+            <p className="brief-generated-direction">{creativeDirection.prompt}</p>
+            <p className="brief-first-move"><strong>First move:</strong> {creativeDirection.firstMove}</p>
+            <div className="brief-result-actions">
+              <button className="text-link brief-copy" type="button" onClick={copyDirection}>
+                Copy this direction <span aria-hidden="true">↗</span>
+              </button>
+              <a className="text-link" href={getRouteHref('/contact/')}>Turn it into a real brief <ArrowIcon /></a>
+              <span className="brief-copy-status" role="status">{copyStatus}</span>
+            </div>
+          </div>
+        )}
       </section>
     </div>
   );
