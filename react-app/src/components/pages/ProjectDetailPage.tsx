@@ -1,6 +1,7 @@
 import ArrowIcon from '../ArrowIcon';
 import { GlitchHeading } from '../GlitchHeading';
 import ProjectImage from '../ProjectImage';
+import { getDesignApproachHref } from '../designApproaches';
 import { getRouteHref } from '../pageConfig';
 import projects, { getProjectHref, type Project } from '../projects';
 
@@ -11,6 +12,7 @@ type ProjectDetailPageProps = {
 function ProjectDetailPage({ project }: ProjectDetailPageProps) {
   const projectIndex = projects.findIndex((item) => item.number === project.number);
   const nextProject = projects[(projectIndex + 1) % projects.length];
+  const approachHref = getDesignApproachHref(project);
 
   return (
     <section className="inner-page page-shell project-detail-page">
@@ -51,15 +53,22 @@ function ProjectDetailPage({ project }: ProjectDetailPageProps) {
       </div>
       <div className="project-detail-copy">
         <div>
-          <p className="eyebrow"><span className="eyebrow-line" /> Project overview</p>
-          <GlitchHeading as="h2">The thinking behind the pixels.</GlitchHeading>
+          <p className="eyebrow"><span className="eyebrow-line" /> What shaped the work</p>
+          <GlitchHeading as="h2">The idea and the design choices.</GlitchHeading>
         </div>
         <div>
+          <p className="eyebrow"><span className="eyebrow-line" /> Project overview</p>
           <p>{project.summary}</p>
+          <p className="eyebrow"><span className="eyebrow-line" /> Design approach</p>
           <p>{project.detail}</p>
           <p className="project-detail-category"><strong>Discipline</strong>{project.category}</p>
         </div>
       </div>
+      {approachHref && (
+        <a className="project-secret-link project-detail-approach-link" href={getRouteHref(approachHref)}>
+          Read the studio notes <ArrowIcon diagonal />
+        </a>
+      )}
       <div className="project-detail-next">
         <span>Continue exploring</span>
         <a href={getProjectHref(nextProject)}>

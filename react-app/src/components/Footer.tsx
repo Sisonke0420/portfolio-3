@@ -5,7 +5,7 @@ function Footer() {
   return (
     <footer className="site-footer page-shell">
       <Wordmark href={getRouteHref('/')} />
-      <p>Visual identity · Digital products · Audio · Moving image · Application systems</p>
+      <p>Visual identity · Editorial design · Digital products</p>
       <span>© 2026 Sisonke Miya</span>
     </footer>
   );

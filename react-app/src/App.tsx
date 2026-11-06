@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import AboutPage from './components/pages/AboutPage';
@@ -41,6 +41,8 @@ function App({ initialPath }: AppProps) {
   const [currentPage, setCurrentPage] = useState<Page>(startingLocation.page);
   const [projectSlug, setProjectSlug] = useState(startingLocation.projectSlug);
   const [darkMode, setDarkMode] = useState(false);
+  const manualTheme = useRef(false);
+  const themeTimer = useRef<number | null>(null);
   const selectedProject = projects.find((project) => getProjectSlug(project) === projectSlug);
   const selectedApproach = designApproaches.find((approach) => approach.slug === projectSlug);
 
@@ -114,10 +116,15 @@ function App({ initialPath }: AppProps) {
   }, [currentPage, projectSlug]);
 
   useEffect(() => {
-    let themeTimer: number;
+    const savedTheme = window.localStorage.getItem('portfolio-theme');
+    if (savedTheme === 'light' || savedTheme === 'dark') {
+      manualTheme.current = true;
+      setDarkMode(savedTheme === 'dark');
+      return;
+    }
 
     function updateTheme() {
-      window.clearTimeout(themeTimer);
+      if (themeTimer.current !== null) window.clearTimeout(themeTimer.current);
       const now = new Date();
       const hour = now.getHours();
       setDarkMode(hour >= 18 || hour < 6);
@@ -132,21 +139,31 @@ function App({ initialPath }: AppProps) {
         nextTransition.setHours(6, 0, 0, 0);
       }
 
-      themeTimer = window.setTimeout(updateTheme, nextTransition.getTime() - now.getTime());
+      if (!manualTheme.current) {
+        themeTimer.current = window.setTimeout(updateTheme, nextTransition.getTime() - now.getTime());
+      }
     }
 
     function updateThemeWhenVisible() {
-      if (document.visibilityState === 'visible') updateTheme();
+      if (document.visibilityState === 'visible' && !manualTheme.current) updateTheme();
     }
 
     updateTheme();
     document.addEventListener('visibilitychange', updateThemeWhenVisible);
 
     return () => {
-      window.clearTimeout(themeTimer);
+      if (themeTimer.current !== null) window.clearTimeout(themeTimer.current);
       document.removeEventListener('visibilitychange', updateThemeWhenVisible);
     };
   }, []);
+
+  function toggleTheme() {
+    const nextDarkMode = !darkMode;
+    manualTheme.current = true;
+    if (themeTimer.current !== null) window.clearTimeout(themeTimer.current);
+    setDarkMode(nextDarkMode);
+    window.localStorage.setItem('portfolio-theme', nextDarkMode ? 'dark' : 'light');
+  }
 
   return (
     <InteractionSoundsProvider>
@@ -169,6 +186,8 @@ function App({ initialPath }: AppProps) {
         <Header
           currentPage={currentPage}
           pages={pages}
+          darkMode={darkMode}
+          onToggleTheme={toggleTheme}
         />
         <div className="header-spacer" aria-hidden="true" />
         <GlitchHeadingProvider>

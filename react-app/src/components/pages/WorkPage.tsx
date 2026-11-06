@@ -9,13 +9,12 @@ function WorkPage() {
       <p className="eyebrow"><span className="eyebrow-line" /> <GlitchSlogan messages={['Portfolio · 2022—2026', 'Proof of curiosity · 2022—2026', 'A selection of solved puzzles']} /></p>
       <div className="work-heading">
         <GlitchHeading as="h1" className="page-title">Ideas, shaped<br />with <span className="serif-word">a point to make.</span></GlitchHeading>
-        <p>A visual-led selection of identity, editorial, typography, and moving-image work—each shaped around a clear idea and audience.</p>
+        <p>Visual identity and editorial design, shaped around a clear idea, an audience, and the details that make a system hold together.</p>
       </div>
       <p className="work-introduction">
-        The wider practice also includes web and mobile products, audio and
-        moving image, and application systems. This selection focuses on
-        visual work, showing how research and a clear concept become useful
-        design.
+        This selection focuses on visual identity, typography, editorial, and
+        art direction. I bring the same clarity to web and mobile products;
+        this portfolio currently shows the visual side of that practice.
       </p>
       <ProjectGrid />
       <div className="work-closing-copy">

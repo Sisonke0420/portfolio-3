@@ -6,9 +6,11 @@ import GlitchSlogan from './GlitchSlogan';
 type HeaderProps = {
   currentPage: Page;
   pages: { id: Page; label: string }[];
+  darkMode: boolean;
+  onToggleTheme: () => void;
 };
 
-function Header({ currentPage, pages }: HeaderProps) {
+function Header({ currentPage, pages, darkMode, onToggleTheme }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -50,6 +52,15 @@ function Header({ currentPage, pages }: HeaderProps) {
           messages={['Open for creative projects', 'Good ideas welcome', 'Ready for the next interesting thing']}
         />
       </a>
+      <button
+        className="theme-toggle"
+        type="button"
+        aria-label={`Switch to ${darkMode ? 'light' : 'dark'} mode`}
+        aria-pressed={darkMode}
+        onClick={onToggleTheme}
+      >
+        {darkMode ? 'Light' : 'Dark'}
+      </button>
       <button
         className="menu-toggle"
         type="button"

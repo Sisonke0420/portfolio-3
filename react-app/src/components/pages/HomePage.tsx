@@ -90,9 +90,9 @@ function HomePage() {
             <span className="accent-word">changing</span> world<span className="accent-period">.</span>
           </GlitchHeading>
           <p className="hero-description">
-            I work across visual identity and editorial design, web and mobile
-            products, audio and moving image, and application systems. Clear
-            ideas, considered craft, and interactions that do what they say.
+            I create visual identities and editorial design, then bring that
+            thinking into web and mobile products. Distinctive design, careful
+            code, and interactions that do what they say.
           </p>
           <div className="hero-actions">
             <a className="button button-dark" href={getRouteHref('/work/')}>
