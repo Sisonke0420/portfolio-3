@@ -67,7 +67,7 @@ function ProjectCarousel() {
                   loop
                   muted
                   playsInline
-                  preload="auto"
+                  preload="metadata"
                 />
               </a>
             ) : activeProject.image ? (

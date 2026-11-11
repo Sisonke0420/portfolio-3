@@ -21,7 +21,9 @@ function CustomCursor({ darkMode }: CustomCursorProps) {
     let pointerY = 0;
     let isInitialized = false;
     let animationFrame: number | null = null;
+    let pendingPointerUpdate = false;
     const tail = Array.from({ length: TAIL_LENGTH }, () => ({ x: 0, y: 0 }));
+    const cardSelector = '.project-card, .about-card, .discipline-card, .tool-list li, .contact-card, .approach-principle';
 
     function animateTail() {
       if (cursorRef.current) {
@@ -47,9 +49,8 @@ function CustomCursor({ darkMode }: CustomCursorProps) {
       }
     }
 
-    function handlePointerMove(event: PointerEvent) {
-      pointerX = event.clientX;
-      pointerY = event.clientY;
+    function updatePointerState() {
+      pendingPointerUpdate = false;
       const hoveredElement = document.elementFromPoint(pointerX, pointerY);
       const control = hoveredElement?.closest('a, button, input, textarea, select, [role="button"]');
       const cursorLabel = control?.matches('.project-note-toggle') ? 'note'
@@ -58,22 +59,13 @@ function CustomCursor({ darkMode }: CustomCursorProps) {
             : control?.matches('.project-mood-filter') ? 'sort'
               : control?.tagName === 'A' ? 'view'
                 : control ? 'go'
-                  : hoveredElement?.closest('.project-card, .about-card, .discipline-card, .tool-list li, .contact-card, .approach-principle')
+                  : hoveredElement?.closest(cardSelector)
                     ? 'peek'
                     : 'go';
+
       if (labelRef.current) labelRef.current.textContent = cursorLabel;
-      document.body.classList.toggle(
-        'cursor-over-interactive',
-        Boolean(control),
-      );
-      document.body.classList.toggle('cursor-over-card', Boolean(hoveredElement?.closest([
-        '.project-card',
-        '.about-card',
-        '.discipline-card',
-        '.tool-list li',
-        '.contact-card',
-        '.approach-principle',
-      ].join(', '))));
+      document.body.classList.toggle('cursor-over-interactive', Boolean(control));
+      document.body.classList.toggle('cursor-over-card', Boolean(hoveredElement?.closest(cardSelector)));
 
       if (!isInitialized) {
         tail.forEach((point) => {
@@ -85,6 +77,15 @@ function CustomCursor({ darkMode }: CustomCursorProps) {
       }
 
       if (animationFrame === null) animationFrame = window.requestAnimationFrame(animateTail);
+    }
+
+    function handlePointerMove(event: PointerEvent) {
+      pointerX = event.clientX;
+      pointerY = event.clientY;
+
+      if (pendingPointerUpdate) return;
+      pendingPointerUpdate = true;
+      window.requestAnimationFrame(updatePointerState);
     }
 
     function handlePointerLeave() {

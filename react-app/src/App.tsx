@@ -1,12 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { Suspense, lazy, useEffect, useRef, useState } from 'react';
 import Footer from './components/Footer';
 import Header from './components/Header';
-import AboutPage from './components/pages/AboutPage';
-import ContactPage from './components/pages/ContactPage';
-import DesignApproachPage from './components/pages/DesignApproachPage';
-import HomePage from './components/pages/HomePage';
-import ProjectDetailPage from './components/pages/ProjectDetailPage';
-import WorkPage from './components/pages/WorkPage';
 import CustomCursor from './components/CustomCursor';
 import { GlitchHeadingProvider } from './components/GlitchHeading';
 import { InteractionSoundsProvider } from './components/InteractionSounds';
@@ -14,6 +8,13 @@ import { pages, type Page } from './components/pageConfig';
 import projects, { getProjectSlug } from './components/projects';
 import { designApproaches } from './components/designApproaches';
 import './App.css';
+
+const HomePage = lazy(() => import('./components/pages/HomePage'));
+const AboutPage = lazy(() => import('./components/pages/AboutPage'));
+const WorkPage = lazy(() => import('./components/pages/WorkPage'));
+const ContactPage = lazy(() => import('./components/pages/ContactPage'));
+const ProjectDetailPage = lazy(() => import('./components/pages/ProjectDetailPage'));
+const DesignApproachPage = lazy(() => import('./components/pages/DesignApproachPage'));
 
 type AppProps = {
   initialPath?: string;
@@ -81,10 +82,11 @@ function App({ initialPath }: AppProps) {
     if (!site) return;
 
     const textSelector = [
-      'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'a', 'button', 'label',
-      'li', 'blockquote', 'figcaption', 'legend', 'summary', 'dt', 'dd',
-      'th', 'td', 'caption', 'small', 'strong', 'em', 'span',
+      'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+      'p', 'li', 'blockquote', 'figcaption', 'legend', 'summary', 'dt', 'dd',
+      'th', 'td', 'caption', 'small', 'strong', 'em',
     ].join(', ');
+
     const textTargets = [...site.querySelectorAll<HTMLElement>(textSelector)]
       .filter((target) => {
         const hasDirectText = [...target.childNodes].some(
@@ -92,6 +94,7 @@ function App({ initialPath }: AppProps) {
         );
         return hasDirectText;
       });
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
@@ -165,6 +168,22 @@ function App({ initialPath }: AppProps) {
     window.localStorage.setItem('portfolio-theme', nextDarkMode ? 'dark' : 'light');
   }
 
+  let pageContent;
+
+  if (currentPage === 'approach' && selectedApproach) {
+    pageContent = <DesignApproachPage approach={selectedApproach} />;
+  } else if (selectedProject) {
+    pageContent = <ProjectDetailPage project={selectedProject} />;
+  } else if (currentPage === 'home') {
+    pageContent = <HomePage />;
+  } else if (currentPage === 'about') {
+    pageContent = <AboutPage />;
+  } else if (currentPage === 'work') {
+    pageContent = <WorkPage />;
+  } else if (currentPage === 'contact') {
+    pageContent = <ContactPage />;
+  }
+
   return (
     <InteractionSoundsProvider>
       {splashState !== 'hidden' && (
@@ -191,20 +210,11 @@ function App({ initialPath }: AppProps) {
         />
         <div className="header-spacer" aria-hidden="true" />
         <GlitchHeadingProvider>
-          <main id="main-content" key={currentPage} tabIndex={-1}>
-            {currentPage === 'approach' && selectedApproach ? (
-              <DesignApproachPage approach={selectedApproach} />
-            ) : selectedProject ? (
-              <ProjectDetailPage project={selectedProject} />
-            ) : (
-              <>
-                {currentPage === 'home' && <HomePage />}
-                {currentPage === 'about' && <AboutPage />}
-                {currentPage === 'work' && <WorkPage />}
-                {currentPage === 'contact' && <ContactPage />}
-              </>
-            )}
-          </main>
+          <Suspense fallback={<div className="page-loading" aria-busy="true" aria-live="polite" />}>
+            <main id="main-content" key={currentPage} tabIndex={-1}>
+              {pageContent}
+            </main>
+          </Suspense>
         </GlitchHeadingProvider>
         <Footer />
       </div>
