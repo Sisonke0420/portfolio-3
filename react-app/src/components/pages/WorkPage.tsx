@@ -16,6 +16,10 @@ const webProjects = [
   },
 ];
 
+function getPreviewImage(url: string): string {
+  return `https://s.wordpress.com/mshots/v1/${encodeURIComponent(url)}?w=1200`;
+}
+
 function WorkPage() {
   return (
     <section className="inner-page page-shell work-page">
@@ -45,14 +49,12 @@ function WorkPage() {
                 aria-label={`Visit ${project.title} (opens in a new tab)`}
                 style={{ display: 'block', overflow: 'hidden', aspectRatio: '16 / 10', borderRadius: 12, border: '1px solid var(--line)', background: 'var(--panel)' }}
               >
-                <iframe
-                  src={project.url}
-                  title={`${project.title} live preview`}
+                <img
+                  src={getPreviewImage(project.url)}
+                  alt={`${project.title} website preview`}
                   loading="lazy"
                   referrerPolicy="no-referrer"
-                  tabIndex={-1}
-                  aria-hidden="true"
-                  style={{ display: 'block', width: '100%', height: '100%', border: 0, pointerEvents: 'none' }}
+                  style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', border: 0 }}
                 />
               </a>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', gap: 16, paddingTop: 14 }}>
