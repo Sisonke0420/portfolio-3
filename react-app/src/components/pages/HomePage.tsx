@@ -133,7 +133,7 @@ function HomePage() {
               <strong>Geometric Motion Studies</strong>
               <small>Image-making · Motion design</small>
             </span>
-            <span className="hero-artwork-spark" aria-hidden="true">✳</span>
+            <span className="hero-artwork-spark" aria-hidden="true"></span>
           </figcaption>
         </figure>
         <div className="hero-index"><span>01</span><span className="index-rule" /><span>04</span></div>
@@ -142,7 +142,7 @@ function HomePage() {
       <section className="home-practice page-shell">
         <div className="home-practice-heading">
           <p className="eyebrow"><span className="eyebrow-line" /> A clear process, from idea to execution</p>
-          <GlitchHeading as="h2">From the first sketch<br /><span className="serif-word">to the last tiny detail.</span></GlitchHeading>
+          <GlitchHeading as="h2">from the first sketch<br /><span className="serif-word">to the last tiny detail.</span></GlitchHeading>
           <p>
             I take a brief from research and concept through design,
             production, and implementation—keeping each discipline in service
