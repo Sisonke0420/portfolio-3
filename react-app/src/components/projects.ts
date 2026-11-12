@@ -253,7 +253,7 @@ const projects: Project[] = [
     funNote: 'A good place to browse.',
     annotation: 'A storefront, live on the web.',
     moods: ['clear', 'useful'],
-    externalUrl: 'https://website-e-commerce-git-v4-sisonke1.vercel.app/',
+    externalUrl: 'https://website-e-commerce-blond.vercel.app/',
     previewTheme: 'storefront',
     previewKicker: 'WEB DESIGN / E-COMMERCE',
     previewTitle: 'E-commerce Website',
