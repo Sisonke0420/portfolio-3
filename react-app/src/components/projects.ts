@@ -235,7 +235,7 @@ const projects: Project[] = [
     mark: '',
     description: '',
     summary: 'A short-form portfolio film bringing selected visual work together in a moving-image format.',
-    detail: 'The film provides a compact way to experience the work in sequence. Playback is user-controlled so it does not interrupt browsing.',
+    detail: 'The film plays silently on a loop, with controls available to pause or adjust playback.',
     funNote: 'A portfolio, with a play button.',
     annotation: 'Work, in motion.',
     moods: ['loud', 'useful'],

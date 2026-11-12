@@ -4,7 +4,7 @@ import { GlitchHeading } from '../GlitchHeading';
 import GlitchSlogan from '../GlitchSlogan';
 import ProjectCarousel from '../ProjectCarousel';
 import { getRouteHref } from '../pageConfig';
-import heroProjectImage from '../../assets/Images/geometric-instagram-854-square-1080x1080.png';
+import heroProjectImage from '../../assets/Images/geometric-instagram-453-portrait-1080x1350.png';
 
 const briefProjects = ['a neighborhood café', 'a tiny culture festival', 'a clever new app', 'a very ambitious bookshop', 'a community art space'];
 const briefAudiences = ['curious first-timers', 'people with very full calendars', 'the happily hard-to-impress', 'locals who know all the shortcuts'];
@@ -119,7 +119,7 @@ function HomePage() {
           <img
             className="hero-artwork-image"
             src={heroProjectImage}
-            alt="Geometric code-inspired image and motion study in dark red and charcoal"
+            alt="Grayscale portrait layered with glitch textures and geometric interface graphics"
             loading="eager"
             decoding="async"
           />

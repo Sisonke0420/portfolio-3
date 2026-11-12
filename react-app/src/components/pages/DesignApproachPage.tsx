@@ -37,6 +37,7 @@ function DesignApproachPage({ approach }: DesignApproachPageProps) {
                 src={project.video}
                 aria-label={`${project.title} video`}
                 controls
+                autoPlay
                 loop
                 muted
                 playsInline

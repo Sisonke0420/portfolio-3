@@ -36,6 +36,9 @@ function ProjectDetailPage({ project }: ProjectDetailPageProps) {
             src={project.video}
             aria-label={`${project.title} video`}
             controls
+            autoPlay
+            loop
+            muted
             playsInline
             preload="none"
           />
@@ -60,6 +63,9 @@ function ProjectDetailPage({ project }: ProjectDetailPageProps) {
                   src={media.src}
                   aria-label={media.alt}
                   controls
+                  autoPlay
+                  loop
+                  muted
                   playsInline
                   preload="none"
                 />
