@@ -17,6 +17,8 @@ function ProjectImage({ src, alt, contained = false, href }: ProjectImageProps) 
           className={`project-art-image${contained ? ' project-art-image-contained' : ''}`}
           src={src}
           alt={alt}
+          loading="lazy"
+          decoding="async"
         />
       </a>
     );
@@ -34,6 +36,8 @@ function ProjectImage({ src, alt, contained = false, href }: ProjectImageProps) 
           className={`project-art-image${contained ? ' project-art-image-contained' : ''}`}
           src={src}
           alt={alt}
+          loading="lazy"
+          decoding="async"
         />
       </button>
       <dialog
@@ -55,7 +59,7 @@ function ProjectImage({ src, alt, contained = false, href }: ProjectImageProps) 
         >
           ×
         </button>
-        <img src={src} alt={alt} />
+        <img src={src} alt={alt} loading="lazy" decoding="async" />
       </dialog>
     </>
   );

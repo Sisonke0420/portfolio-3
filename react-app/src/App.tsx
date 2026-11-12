@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import AboutPage from './components/pages/AboutPage';
@@ -40,10 +40,10 @@ function App({ initialPath }: AppProps) {
   const [splashState, setSplashState] = useState<'visible' | 'exiting' | 'hidden'>('visible');
   const [currentPage, setCurrentPage] = useState<Page>(startingLocation.page);
   const [projectSlug, setProjectSlug] = useState(startingLocation.projectSlug);
-  const [darkMode, setDarkMode] = useState(false);
-  const manualTheme = useRef(false);
-  const themeTimer = useRef<number | null>(null);
-  const selectedProject = projects.find((project) => getProjectSlug(project) === projectSlug);
+  const [darkMode, setDarkMode] = useState(true);
+  const selectedProject = projects.find(
+    (project) => !project.externalUrl && getProjectSlug(project) === projectSlug,
+  );
   const selectedApproach = designApproaches.find((approach) => approach.slug === projectSlug);
 
   useEffect(() => {
@@ -118,49 +118,17 @@ function App({ initialPath }: AppProps) {
   useEffect(() => {
     const savedTheme = window.localStorage.getItem('portfolio-theme');
     if (savedTheme === 'light' || savedTheme === 'dark') {
-      manualTheme.current = true;
       setDarkMode(savedTheme === 'dark');
-      return;
     }
-
-    function updateTheme() {
-      if (themeTimer.current !== null) window.clearTimeout(themeTimer.current);
-      const now = new Date();
-      const hour = now.getHours();
-      setDarkMode(hour >= 18 || hour < 6);
-
-      const nextTransition = new Date(now);
-      if (hour < 6) {
-        nextTransition.setHours(6, 0, 0, 0);
-      } else if (hour < 18) {
-        nextTransition.setHours(18, 0, 0, 0);
-      } else {
-        nextTransition.setDate(nextTransition.getDate() + 1);
-        nextTransition.setHours(6, 0, 0, 0);
-      }
-
-      if (!manualTheme.current) {
-        themeTimer.current = window.setTimeout(updateTheme, nextTransition.getTime() - now.getTime());
-      }
-    }
-
-    function updateThemeWhenVisible() {
-      if (document.visibilityState === 'visible' && !manualTheme.current) updateTheme();
-    }
-
-    updateTheme();
-    document.addEventListener('visibilitychange', updateThemeWhenVisible);
-
-    return () => {
-      if (themeTimer.current !== null) window.clearTimeout(themeTimer.current);
-      document.removeEventListener('visibilitychange', updateThemeWhenVisible);
-    };
   }, []);
+
+  useEffect(() => {
+    const themeColor = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
+    if (themeColor) themeColor.content = darkMode ? '#171916' : '#f5f3ed';
+  }, [darkMode]);
 
   function toggleTheme() {
     const nextDarkMode = !darkMode;
-    manualTheme.current = true;
-    if (themeTimer.current !== null) window.clearTimeout(themeTimer.current);
     setDarkMode(nextDarkMode);
     window.localStorage.setItem('portfolio-theme', nextDarkMode ? 'dark' : 'light');
   }
@@ -175,7 +143,13 @@ function App({ initialPath }: AppProps) {
         >
           <div className="splash-content">
             <p className="splash-kicker">A small pause before the pixels</p>
-            <span className="splash-wordmark">{'{seriously'}<span>.</span>{'creative}'}</span>
+            <span
+              className="splash-wordmark"
+              data-text="{seriously.creative}"
+              aria-label="{seriously.creative}"
+            >
+              <span aria-hidden="true">{'{seriously'}<span>.</span>{'creative}'}</span>
+            </span>
             <div className="splash-progress"><span /></div>
             <p className="splash-caption">Good ideas. Fewer unnecessary things.</p>
           </div>

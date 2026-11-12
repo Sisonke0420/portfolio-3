@@ -21,7 +21,7 @@ function AboutPage() {
           </p>
         </div>
         <div className="about-card">
-          <img className="about-portrait" src={portraitImage} alt="Portrait of Sisonke Miya" />
+          <img className="about-portrait" src={portraitImage} alt="Portrait of Sisonke Miya" loading="lazy" decoding="async" />
           <p>Sisonke Miya<br /><span>Graphic designer &amp; developer</span></p>
         </div>
       </div>

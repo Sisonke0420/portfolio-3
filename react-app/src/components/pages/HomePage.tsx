@@ -4,7 +4,7 @@ import { GlitchHeading } from '../GlitchHeading';
 import GlitchSlogan from '../GlitchSlogan';
 import ProjectCarousel from '../ProjectCarousel';
 import { getRouteHref } from '../pageConfig';
-import heroProjectImage from '../../assets/Images/8fc0be87-b9c6-4a60-8965-7c83bd61072a.webp';
+import heroProjectImage from '../../assets/Images/geometric-instagram-854-square-1080x1080.png';
 
 const briefProjects = ['a neighborhood café', 'a tiny culture festival', 'a clever new app', 'a very ambitious bookshop', 'a community art space'];
 const briefAudiences = ['curious first-timers', 'people with very full calendars', 'the happily hard-to-impress', 'locals who know all the shortcuts'];
@@ -119,17 +119,19 @@ function HomePage() {
           <img
             className="hero-artwork-image"
             src={heroProjectImage}
-            alt="Portrait overlaid with white geometric shapes on a blue background"
+            alt="Geometric code-inspired image and motion study in dark red and charcoal"
+            loading="eager"
+            decoding="async"
           />
           <div className="hero-artwork-topline" aria-hidden="true">
-            <span>Selected visual / 04</span>
+            <span>Image + motion / 01</span>
             <span>SM<span className="wordmark-dot">.</span></span>
           </div>
           <figcaption className="hero-artwork-caption">
-            <span className="hero-artwork-number">04</span>
+            <span className="hero-artwork-number">01</span>
             <span className="hero-artwork-title">
-              <strong>Portrait Art Direction</strong>
-              <small>Art direction · Portrait</small>
+              <strong>Geometric Motion Studies</strong>
+              <small>Image-making · Motion design</small>
             </span>
             <span className="hero-artwork-spark" aria-hidden="true">✳</span>
           </figcaption>

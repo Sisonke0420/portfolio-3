@@ -13,30 +13,46 @@ function ProjectCard({ project }: { project: Project }) {
   const [noteOpen, setNoteOpen] = useState(false);
   const approachHref = getDesignApproachHref(project);
   const noteId = `project-note-${project.number}`;
+  const projectHref = getProjectHref(project);
+  const externalLinkProps = project.externalUrl
+    ? { target: '_blank', rel: 'noopener noreferrer', title: 'Opens in a new tab' }
+    : {};
 
   return (
     <article className={`project-card${approachHref ? ' has-secret-approach' : ''}${noteOpen ? ' is-note-open' : ''}`}>
       <div className={`project-art ${project.image || project.video ? 'project-art-image-slide' : project.className}`}>
-        {project.video ? (
-          <a className="project-art-video-link" href={getProjectHref(project)} aria-label={`View project: ${project.title}`}>
-            <video
-              className="project-art-video"
-              src={project.video}
-              aria-hidden="true"
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="auto"
-            />
-          </a>
-        ) : project.image ? (
+        {project.image ? (
           <ProjectImage
             src={project.image}
             alt={project.imageAlt ?? `${project.title} project artwork`}
             contained={project.containImage}
             href={getProjectHref(project)}
           />
+        ) : project.externalUrl ? (
+          <a
+            className={`project-website-preview project-website-preview-${project.previewTheme ?? 'storefront'}`}
+            href={projectHref}
+            {...externalLinkProps}
+            aria-label={`Open ${project.title} (opens in a new tab)`}
+          >
+            <span className="website-preview-topline">
+              <span>{project.previewKicker}</span>
+              <span className="website-preview-window" aria-hidden="true"><i /><i /><i /></span>
+            </span>
+            <span className="website-preview-copy">
+              <span className="website-preview-mark">{project.previewTheme === 'rescue' ? 'FS /' : 'ONLINE STORE'}</span>
+              <strong>{project.previewTitle}</strong>
+              <span className="website-preview-description">{project.previewDescription}</span>
+              <span className="website-preview-action">Visit live site <ArrowIcon diagonal /></span>
+            </span>
+            <span className="website-preview-decoration" aria-hidden="true" />
+          </a>
+        ) : project.video ? (
+          <a className="project-art-video-link project-video-teaser" href={getProjectHref(project)} aria-label={`View project: ${project.title}`}>
+            <span>Moving image</span>
+            <strong>{project.title}</strong>
+            <span className="project-video-teaser-action">Play in case study <ArrowIcon diagonal /></span>
+          </a>
         ) : (
           <>
             <span className="project-art-mark">
@@ -61,13 +77,14 @@ function ProjectCard({ project }: { project: Project }) {
       </div>
       <div className="project-meta">
         <div>
-          <h3><a href={getProjectHref(project)}>{project.title}</a></h3>
+          <h3><a href={projectHref} {...externalLinkProps}>{project.title}</a></h3>
           <p>{project.category}</p>
         </div>
         <a
           className="project-arrow"
-          href={getProjectHref(project)}
-          aria-label={`Read the ${project.title} case study`}
+          href={projectHref}
+          {...externalLinkProps}
+          aria-label={project.externalUrl ? `Visit the ${project.title} website (opens in a new tab)` : `Read the ${project.title} case study`}
         >
           <ArrowIcon diagonal />
         </a>

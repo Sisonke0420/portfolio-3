@@ -9,12 +9,12 @@ function WorkPage() {
       <p className="eyebrow"><span className="eyebrow-line" /> <GlitchSlogan messages={['Portfolio · 2022—2026', 'Proof of curiosity · 2022—2026', 'A selection of solved puzzles']} /></p>
       <div className="work-heading">
         <GlitchHeading as="h1" className="page-title">Ideas, shaped<br />with <span className="serif-word">a point to make.</span></GlitchHeading>
-        <p>Visual identity and editorial design, shaped around a clear idea, an audience, and the details that make a system hold together.</p>
+        <p>Identity, image-making, motion, and digital experiences—each built around a clear idea and a point of view.</p>
       </div>
       <p className="work-introduction">
-        This selection focuses on visual identity, typography, editorial, and
-        art direction. I bring the same clarity to web and mobile products;
-        this portfolio currently shows the visual side of that practice.
+        Browse identity and typography, image studies, photography, motion,
+        and web projects. Open a case study to see the thinking, or visit a
+        live website to experience the finished work.
       </p>
       <ProjectGrid />
       <div className="work-closing-copy">

@@ -75,7 +75,7 @@ try {
       title: 'Contact — Sisonke Miya',
       description: 'Get in touch with Sisonke Miya about graphic design, brand identity, and digital experience projects.',
     },
-    ...projects.map((project) => ({
+    ...projects.filter((project) => !project.externalUrl).map((project) => ({
       path: `/work/${getProjectSlug(project)}/`,
       title: `${project.title} — Sisonke Miya`,
       description: project.summary,

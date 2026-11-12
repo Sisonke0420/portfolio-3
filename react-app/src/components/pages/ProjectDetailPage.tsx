@@ -35,12 +35,9 @@ function ProjectDetailPage({ project }: ProjectDetailPageProps) {
             className="project-art-video"
             src={project.video}
             aria-label={`${project.title} video`}
-            autoPlay
             controls
-            loop
-            muted
             playsInline
-            preload="auto"
+            preload="none"
           />
         ) : project.image ? (
           <ProjectImage
@@ -51,6 +48,29 @@ function ProjectDetailPage({ project }: ProjectDetailPageProps) {
         ) : null}
         <p className="project-detail-annotation"><span aria-hidden="true">↗</span> {project.annotation}</p>
       </div>
+      {project.gallery && (
+        <section className="project-detail-gallery" aria-label={`${project.title} media gallery`}>
+          <p className="eyebrow project-detail-gallery-heading">
+            <span className="eyebrow-line" /> A closer look
+          </p>
+          {project.gallery.map((media, index) => (
+            <figure className="project-detail-gallery-item" key={media.src}>
+              {media.type === 'video' ? (
+                <video
+                  src={media.src}
+                  aria-label={media.alt}
+                  controls
+                  playsInline
+                  preload="none"
+                />
+              ) : (
+                <img src={media.src} alt={media.alt} loading="lazy" decoding="async" />
+              )}
+              <figcaption><span>{String(index + 1).padStart(2, '0')}</span>{media.alt}</figcaption>
+            </figure>
+          ))}
+        </section>
+      )}
       <div className="project-detail-copy">
         <div>
           <p className="eyebrow"><span className="eyebrow-line" /> What shaped the work</p>
@@ -71,7 +91,11 @@ function ProjectDetailPage({ project }: ProjectDetailPageProps) {
       )}
       <div className="project-detail-next">
         <span>Continue exploring</span>
-        <a href={getProjectHref(nextProject)}>
+        <a
+          href={getProjectHref(nextProject)}
+          target={nextProject.externalUrl ? '_blank' : undefined}
+          rel={nextProject.externalUrl ? 'noopener noreferrer' : undefined}
+        >
           {nextProject.title}<ArrowIcon diagonal />
         </a>
       </div>

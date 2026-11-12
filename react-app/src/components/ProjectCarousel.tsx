@@ -7,22 +7,13 @@ import projects, { getProjectHref } from './projects';
 
 function ProjectCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
   const [noteOpen, setNoteOpen] = useState(false);
   const activeProject = projects[activeIndex];
   const activeApproachHref = getDesignApproachHref(activeProject);
-
-  useEffect(() => {
-    if (isPaused || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    const timer = window.setInterval(() => {
-      if (document.visibilityState === 'visible') {
-        setActiveIndex((currentIndex) => (currentIndex + 1) % projects.length);
-      }
-    }, 5000);
-
-    return () => window.clearInterval(timer);
-  }, [isPaused]);
+  const projectHref = getProjectHref(activeProject);
+  const externalLinkProps = activeProject.externalUrl
+    ? { target: '_blank', rel: 'noopener noreferrer', title: 'Opens in a new tab' }
+    : {};
 
   useEffect(() => setNoteOpen(false), [activeIndex]);
 
@@ -41,12 +32,6 @@ function ProjectCarousel() {
       role="region"
       aria-roledescription="carousel"
       aria-label="Selected projects"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-      onFocusCapture={() => setIsPaused(true)}
-      onBlurCapture={(event) => {
-        if (!event.currentTarget.contains(event.relatedTarget)) setIsPaused(false);
-      }}
     >
       <div className="project-carousel-viewport" aria-live="off">
         <article
@@ -57,26 +42,38 @@ function ProjectCarousel() {
           key={activeProject.number}
         >
           <div className={`project-art ${activeProject.image || activeProject.video ? 'project-art-image-slide' : activeProject.className}`}>
-            {activeProject.video ? (
-              <a className="project-art-video-link" href={getProjectHref(activeProject)} aria-label={`View project: ${activeProject.title}`}>
-                <video
-                  className="project-art-video"
-                  src={activeProject.video}
-                  aria-hidden="true"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="auto"
-                />
-              </a>
-            ) : activeProject.image ? (
+            {activeProject.image ? (
               <ProjectImage
                 src={activeProject.image}
                 alt={activeProject.imageAlt ?? `${activeProject.title} project artwork`}
                 contained={activeProject.containImage}
                 href={getProjectHref(activeProject)}
               />
+            ) : activeProject.externalUrl ? (
+              <a
+                className={`project-website-preview project-website-preview-${activeProject.previewTheme ?? 'storefront'}`}
+                href={projectHref}
+                {...externalLinkProps}
+                aria-label={`Open ${activeProject.title} (opens in a new tab)`}
+              >
+                <span className="website-preview-topline">
+                  <span>{activeProject.previewKicker}</span>
+                  <span className="website-preview-window" aria-hidden="true"><i /><i /><i /></span>
+                </span>
+                <span className="website-preview-copy">
+                  <span className="website-preview-mark">{activeProject.previewTheme === 'rescue' ? 'FS /' : 'ONLINE STORE'}</span>
+                  <strong>{activeProject.previewTitle}</strong>
+                  <span className="website-preview-description">{activeProject.previewDescription}</span>
+                  <span className="website-preview-action">Visit live site <ArrowIcon diagonal /></span>
+                </span>
+                <span className="website-preview-decoration" aria-hidden="true" />
+              </a>
+            ) : activeProject.video ? (
+              <a className="project-art-video-link project-video-teaser" href={getProjectHref(activeProject)} aria-label={`View project: ${activeProject.title}`}>
+                <span>Moving image</span>
+                <strong>{activeProject.title}</strong>
+                <span className="project-video-teaser-action">Play in case study <ArrowIcon diagonal /></span>
+              </a>
             ) : (
               <>
                 <span className="project-art-mark">
@@ -101,13 +98,16 @@ function ProjectCarousel() {
           </div>
           <div className="project-meta">
             <div>
-              <h3><a href={getProjectHref(activeProject)}>{activeProject.title}</a></h3>
+              <h3><a href={projectHref} {...externalLinkProps}>{activeProject.title}</a></h3>
               <p>{activeProject.category}</p>
             </div>
             <a
               className="project-arrow"
-              href={getProjectHref(activeProject)}
-              aria-label={`Read the ${activeProject.title} case study`}
+              href={projectHref}
+              {...externalLinkProps}
+              aria-label={activeProject.externalUrl
+                ? `Visit the ${activeProject.title} website (opens in a new tab)`
+                : `Read the ${activeProject.title} case study`}
             >
               <ArrowIcon diagonal />
             </a>
