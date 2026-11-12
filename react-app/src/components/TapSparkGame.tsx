@@ -60,7 +60,7 @@ function TapSparkGame() {
             onClick={catchSpark}
             aria-label={`Catch the spark: ${caught} of ${TARGET_COUNT} caught`}
           >
-            <span aria-hidden="true">✳</span>
+            <span className="tap-spark-target-mark" aria-hidden="true" />
           </button>
         )}
         {(!started || gameOver) && (

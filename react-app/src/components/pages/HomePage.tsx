@@ -101,7 +101,6 @@ function HomePage() {
             <a className="text-link" href={getRouteHref('/about/')}>About the practice</a>
           </div>
           <div className="hero-note">
-            <span className="note-spark">✳</span>
             <span>Johannesburg, South Africa<br />Available worldwide</span>
           </div>
           <GlitchSlogan
